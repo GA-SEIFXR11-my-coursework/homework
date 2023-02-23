@@ -1,0 +1,77 @@
+jlabruna@Justins-MacBook-Pro sei-course % cd homework
+jlabruna@Justins-MacBook-Pro homework % ls
+jlabruna@Justins-MacBook-Pro homework % mkdir unit1
+jlabruna@Justins-MacBook-Pro homework % cd unit1
+jlabruna@Justins-MacBook-Pro unit1 % mkdir House
+jlabruna@Justins-MacBook-Pro unit1 % cd house
+jlabruna@Justins-MacBook-Pro house % ls
+jlabruna@Justins-MacBook-Pro house % touch Dorothy
+jlabruna@Justins-MacBook-Pro house % touch Toto
+jlabruna@Justins-MacBook-Pro house % ls
+Dorothy	Toto
+jlabruna@Justins-MacBook-Pro house % cd ..
+jlabruna@Justins-MacBook-Pro unit1 % ls
+House
+jlabruna@Justins-MacBook-Pro unit1 % mkdir Oz
+jlabruna@Justins-MacBook-Pro Oz % touch Good_Witch_of_the_North
+jlabruna@Justins-MacBook-Pro Oz % ls
+Good_Witch_of_the_North
+jlabruna@Justins-MacBook-Pro Oz % touch Good_Witch_of_the_South
+jlabruna@Justins-MacBook-Pro Oz % touch Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % ls
+Good_Witch_of_the_North		Good_Witch_of_the_South		Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % cd ..
+
+jlabruna@Justins-MacBook-Pro documents % mv /documents/sei-course/homework/unit1/house/Dorothy /documents/sei-course/homework/unit1/Oz/Dorothy
+mv: rename /documents/sei-course/homework/unit1/house/Dorothy to /documents/sei-course/homework/unit1/Oz/Dorothy: No such file or directory
+jlabruna@Justins-MacBook-Pro documents % mv ~/documents/sei-course/homework/unit1/house/Dorothy ~/documents/sei-course/homework/unit1/Oz/Dorothy
+
+jlabruna@Justins-MacBook-Pro unit1 % cd Oz
+jlabruna@Justins-MacBook-Pro Oz % ls
+Dorothy				Good_Witch_of_the_North		Good_Witch_of_the_South		Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % ls
+Dorothy				Good_Witch_of_the_North		Good_Witch_of_the_South		Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % touch Scarecrow
+jlabruna@Justins-MacBook-Pro Oz % touch Tinman
+jlabruna@Justins-MacBook-Pro Oz % touch Cowardly_Lion
+jlabruna@Justins-MacBook-Pro Oz % mkdir Emerald_City
+
+jlabruna@Justins-MacBook-Pro Oz % mv Scarecrow Emerald_City/Scarecrow
+jlabruna@Justins-MacBook-Pro Oz % ls
+Cowardly_Lion			Emerald_City			Good_Witch_of_the_South		Wicked_Witch_of_the_West
+Dorothy				Good_Witch_of_the_North		Tinman
+jlabruna@Justins-MacBook-Pro Oz % cd Emerald_City
+jlabruna@Justins-MacBook-Pro Emerald_City % ls
+Scarecrow
+jlabruna@Justins-MacBook-Pro Emerald_City % cd ..
+jlabruna@Justins-MacBook-Pro Oz % mv Tinman Emerald_City/Tinman
+jlabruna@Justins-MacBook-Pro Oz % mv Cowardly_Lion Emerald_City/Cowardly_Lion
+jlabruna@Justins-MacBook-Pro Oz % ls
+Dorothy				Good_Witch_of_the_North		Wicked_Witch_of_the_West
+Emerald_City			Good_Witch_of_the_South
+jlabruna@Justins-MacBook-Pro Oz % mv Dorothy Emerald_City/Dorothy
+jlabruna@Justins-MacBook-Pro Oz % ls
+Emerald_City			Good_Witch_of_the_North		Good_Witch_of_the_South		Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % touch Flying_Monkeys
+jlabruna@Justins-MacBook-Pro Oz % rm Wicked_Witch_of_the_West
+jlabruna@Justins-MacBook-Pro Oz % cd Emerald_City
+jlabruna@Justins-MacBook-Pro Emerald_City % ls
+Cowardly_Lion	Dorothy		Scarecrow	Tinman
+jlabruna@Justins-MacBook-Pro Emerald_City % echo "a Diploma" >> Scarecrow
+jlabruna@Justins-MacBook-Pro Emerald_City % echo "a heart shaped watch">> Tinman
+jlabruna@Justins-MacBook-Pro Emerald_City % echo "medal" >> Cowardly_Lion
+jlabruna@Justins-MacBook-Pro Emerald_City % less Tinman
+jlabruna@Justins-MacBook-Pro Emerald_City % less scarecrow
+jlabruna@Justins-MacBook-Pro Emerald_City %
+jlabruna@Justins-MacBook-Pro Emerald_City %
+
+Go to dict dir
+Wc -l words
+Result is 235976
+
+Grep -rn words -e “yay” - no result
+Grep string target - grep yzy words
+7 words
+
+Ps aux | grep chrome | wc -l 
+Answer is 3
