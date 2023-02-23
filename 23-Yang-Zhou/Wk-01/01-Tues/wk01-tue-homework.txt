@@ -1,0 +1,35 @@
+Task 1
+yangzhou@Yangs-Air ~ % mkdir House
+yangzhou@Yangs-Air ~ % cd house
+yangzhou@Yangs-Air house % touch Dorothy.txt
+yangzhou@Yangs-Air house % touch Toto.txt
+yangzhou@Yangs-Air house % cd ..
+yangzhou@Yangs-Air ~ % mkdir Oz
+yangzhou@Yangs-Air ~ % cd Oz
+yangzhou@Yangs-Air Oz % touch Good_Witch_of_the_North.txt
+yangzhou@Yangs-Air Oz % touch Wicked_Witch_of_the_East.txt
+yangzhou@Yangs-Air Oz % touch Good_Witch_of_the_South.txt
+yangzhou@Yangs-Air Oz % touch Wicked_Witch_of_the_West.txt
+
+Task 2
+yangzhou@Yangs-Air Oz % rm Wicked_Witch_of_the_East.txt
+yangzhou@Yangs-Air Oz % cd ..   
+yangzhou@Yangs-Air ~ % mv House/Dorothy.txt Oz 
+
+Task 3
+yangzhou@Yangs-Air ~ % touch Scarecrow.txt
+yangzhou@Yangs-Air ~ % touch Tin_Man.txt
+yangzhou@Yangs-Air ~ % touch Cowardly_Lion.txt
+yangzhou@Yangs-Air ~ % mkdir Emerald_City
+yangzhou@Yangs-Air ~ % mv Scarecrow.txt Emerald_City
+yangzhou@Yangs-Air ~ % mv Tin_Man.txt Emerald_City
+yangzhou@Yangs-Air ~ % mv Cowardly_Lion.txt Emerald_City
+
+Task 4
+yangzhou@Yangs-Air ~ % touch Oz/Flying_Monkeys.txt
+yangzhou@Yangs-Air ~ % rm Oz/Wicked_Witch_of_the_West.txt
+yangzhou@Yangs-Air ~ % cd Emerald_City
+yangzhou@Yangs-Air Emerald_City % echo "diploma" >> Scarecrow.txt
+yangzhou@Yangs-Air Emerald_City % echo "heart shaped watch" >> Tin_Man.txt  
+yangzhou@Yangs-Air Emerald_City % echo "medal" >> Cowardly_Lion.txt
+
