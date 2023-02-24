@@ -1,0 +1,131 @@
+── Classwork
+│   ├── unit1
+│   │   ├── homework.txt
+│   │   ├── lesson_01_1
+│   │   ├── lesson_01_2
+│   │   └── unit1
+│   ├── unit2
+│   ├── unit3
+│   └── unit4
+├── Homework
+├── Project1
+├── Project2
+├── Project3
+└── Project4
+
+10 directories, 4 files
+sude@sudes-MacBook-Pro SEI-Course % cd Classwork/unit1
+sude@sudes-MacBook-Pro unit1 % rm unit1
+sude@sudes-MacBook-Pro unit1 % rm lesson_01_1
+sude@sudes-MacBook-Pro unit1 % mkdir lesson1
+sude@sudes-MacBook-Pro unit1 % cd lesson1
+sude@sudes-MacBook-Pro lesson1 % mkdir House
+sude@sudes-MacBook-Pro lesson1 % cd House
+sude@sudes-MacBook-Pro House % touch Dorothy
+sude@sudes-MacBook-Pro House % touch Toto
+sude@sudes-MacBook-Pro House % cd ../
+sude@sudes-MacBook-Pro lesson1 % mkdir Oz
+sude@sudes-MacBook-Pro lesson1 % cd Oz
+sude@sudes-MacBook-Pro Oz % touch "Good Witch of the North" "Wicked Witch of the
+ East" "Good Witch of the South" "Wicked Witch of the West"
+sude@sudes-MacBook-Pro Oz % li
+zsh: command not found: li
+sude@sudes-MacBook-Pro Oz % ls
+Good Witch of the North		Wicked Witch of the East
+Good Witch of the South		Wicked Witch of the West
+sude@sudes-MacBook-Pro Oz % rm "Wicked Witch of the East"
+sude@sudes-MacBook-Pro Oz % mv house/dorothy oz/
+mv: rename house/dorothy to oz/: No such file or directory
+sude@sudes-MacBook-Pro Oz % mv House/Dorothy Oz/
+mv: rename House/Dorothy to Oz/: No such file or directory
+sude@sudes-MacBook-Pro Oz % mv Dorothy ../Oz/
+mv: rename Dorothy to ../Oz/Dorothy: No such file or directory
+sude@sudes-MacBook-Pro Oz % cd Houe
+cd: no such file or directory: Houe
+sude@sudes-MacBook-Pro Oz % cd House
+cd: no such file or directory: House
+sude@sudes-MacBook-Pro Oz % cd ../
+sude@sudes-MacBook-Pro lesson1 % cd House
+sude@sudes-MacBook-Pro House % mv dorothy ../oz
+sude@sudes-MacBook-Pro House % mv dorothy ../oz/
+mv: dorothy: No such file or directory
+sude@sudes-MacBook-Pro House % cd ../
+sude@sudes-MacBook-Pro lesson1 % touch "Scarecrow" "Tin Man" "Cowardly Lion"
+sude@sudes-MacBook-Pro lesson1 % mkdir "Emerald City"
+sude@sudes-MacBook-Pro lesson1 % mv "Scarecrow" "Tin Man" "Cowardly Lion" ../"Em
+erald City"
+
+
+├── unit1
+│   ├── homework.txt
+│   ├── lesson1
+│   │   ├── Cowardly Lion
+│   │   ├── Emerald City
+│   │   ├── House
+│   │   │   └── Toto
+│   │   ├── Oz
+│   │   │   ├── Good Witch of the North
+│   │   │   ├── Good Witch of the South
+│   │   │   ├── Wicked Witch of the West
+│   │   │   └── dorothy
+│   │   ├── Scarecrow
+│   │   └── Tin Man
+│   └── lesson_01_2
+├── unit2
+├── unit3
+└── unit4
+
+8 directories, 10 files
+sude@sudes-MacBook-Pro Classwork % cd unit1
+sude@sudes-MacBook-Pro unit1 % cd lesson1
+sude@sudes-MacBook-Pro lesson1 % mv "scarecrow" /"Emerald city"/
+mv: rename scarecrow to /Emerald city/: No such file or directory
+sude@sudes-MacBook-Pro lesson1 % mv Scarecrow "Emerald City"
+sude@sudes-MacBook-Pro lesson1 % mv "Tin Man" "Emerald City"
+sude@sudes-MacBook-Pro lesson1 % mv "Cowardly Lion" "Emerald City"
+sude@sudes-MacBook-Pro lesson1 % cd Oz
+sude@sudes-MacBook-Pro Oz % touch "Flying Monkeys"
+sude@sudes-MacBook-Pro Oz % rm "Wicked Witch of the West"
+sude@sudes-MacBook-Pro Oz % tree
+.
+├── Flying Monkeys
+├── Good Witch of the North
+├── Good Witch of the South
+└── dorothy
+
+0 directories, 4 files
+sude@sudes-MacBook-Pro Oz % cd ../
+sude@sudes-MacBook-Pro lesson1 % tree
+.
+├── Emerald City
+│   ├── Cowardly Lion
+│   ├── Scarecrow
+│   └── Tin Man
+├── House
+│   └── Toto
+└── Oz
+    ├── Flying Monkeys
+    ├── Good Witch of the North
+    ├── Good Witch of the South
+    └── dorothy
+
+3 directories, 8 files
+sude@sudes-MacBook-Pro lesson1 % cd "Emerald City"
+sude@sudes-MacBook-Pro Emerald City % echo "Diploma" >> "Scarecrow"
+sude@sudes-MacBook-Pro Emerald City % echo "Cowardly Lion" >> "Emerald City"
+sude@sudes-MacBook-Pro Emerald City % echo "Medal" >> "Cowardly Lion"
+sude@sudes-MacBook-Pro Emerald City % echo "Heart Shaped Watch" >> "Tin Man"
+sude@sudes-MacBook-Pro Emerald City % tree
+.
+├── Cowardly Lion
+├── Emerald City
+├── Scarecrow
+└── Tin Man
+
+0 directories, 4 files
+sude@sudes-MacBook-Pro Emerald City % cd "Emerald City"
+cd: not a directory: Emerald City
+sude@sudes-MacBook-Pro Emerald City % ls
+Cowardly Lion	Emerald City	Scarecrow	Tin Man
+sude@sudes-MacBook-Pro Emerald City % rm "Emerald City"
+sude@sudes-MacBook-Pro Emerald City %
