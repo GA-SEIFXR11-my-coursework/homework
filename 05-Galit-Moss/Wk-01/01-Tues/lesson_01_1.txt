@@ -1,0 +1,77 @@
+Last login: Tue Feb 21 20:51:31 on ttys000
+galitmoss@10-0-0-13 ~ % cd desktop
+galitmoss@10-0-0-13 desktop % mkdir Week1
+galitmoss@10-0-0-13 desktop % cd Week1
+galitmoss@10-0-0-13 Week1 % mkdir House
+galitmoss@10-0-0-13 Week1 % cd House
+galitmoss@10-0-0-13 House % touch Dorothy.txt
+galitmoss@10-0-0-13 House % touch Toto.txt
+galitmoss@10-0-0-13 House % cd ../
+galitmoss@10-0-0-13 Week1 % mkdir Oz
+galitmoss@10-0-0-13 Week1 % cd Oz
+galitmoss@10-0-0-13 Oz % touch Good-Witch-Of-The-North.txt
+galitmoss@10-0-0-13 Oz % touch Wicked-Witch-Of-The-West.txt Good-Witch-Of-The-South.txt Wicked-Witch-Of-The-West.txt
+galitmoss@10-0-0-13 Oz % ls
+Good-Witch-Of-The-North.txt	Wicked-Witch-Of-The-West.txt
+Good-Witch-Of-The-South.txt
+galitmoss@10-0-0-13 Oz % touch Wicked-Witch-Of-The-East.txt
+galitmoss@10-0-0-13 Oz % ls
+Good-Witch-Of-The-North.txt	Wicked-Witch-Of-The-East.txt
+Good-Witch-Of-The-South.txt	Wicked-Witch-Of-The-West.txt
+galitmoss@10-0-0-13 Oz % rm Wicked-Witch-Of-The-East.txt
+galitmoss@10-0-0-13 Oz % ls
+Good-Witch-Of-The-North.txt	Good-Witch-Of-The-South.txt	Wicked-Witch-Of-The-West.txt
+galitmoss@10-0-0-13 Oz % mv House/Dorothy.txt Oz
+mv: rename House/Dorothy.txt to Oz: No such file or directory
+galitmoss@10-0-0-13 Oz % cd ../     
+galitmoss@10-0-0-13 Week1 % cd House
+galitmoss@10-0-0-13 House % mv Dorothy.txt /Users/galitmoss/desktop/Week1/Oz
+galitmoss@10-0-0-13 House % cd ../
+galitmoss@10-0-0-13 Week1 % tree
+.
+├── House
+│   └── Toto.txt
+└── Oz
+    ├── Dorothy.txt
+    ├── Good-Witch-Of-The-North.txt
+    ├── Good-Witch-Of-The-South.txt
+    └── Wicked-Witch-Of-The-West.txt
+
+3 directories, 5 files
+galitmoss@10-0-0-13 Week1 % touch Scarecrow.txt Tin-Man.txt Cowardly-Lion.txt
+galitmoss@10-0-0-13 Week1 % ls
+Cowardly-Lion.txt	Oz			Tin-Man.txt
+House			Scarecrow.txt
+galitmoss@10-0-0-13 Week1 % mkdir EmeraldCity                                   
+galitmoss@10-0-0-13 Week1 % mv Scarecrow.txt Tin-Man.txt Cowardly-Lion.txt /Users/galitmoss/desktop/Week1/EmeraldCity
+galitmoss@10-0-0-13 Week1 % cd Oz
+galitmoss@10-0-0-13 Oz % touch Flying-Monkeys.txt
+galitmoss@10-0-0-13 Oz % rm Wicked-Witch-Of-The_West.txt
+rm: Wicked-Witch-Of-The_West.txt: No such file or directory
+galitmoss@10-0-0-13 Oz % ls
+Dorothy.txt			Good-Witch-Of-The-North.txt	Wicked-Witch-Of-The-West.txt
+Flying-Monkeys.txt		Good-Witch-Of-The-South.txt
+galitmoss@10-0-0-13 Oz % rm Wicked-Witch-Of-The-West.txt
+galitmoss@10-0-0-13 Oz % cd ../                                           
+galitmoss@10-0-0-13 Week1 % cd EmeraldCity
+galitmoss@10-0-0-13 EmeraldCity % echo "Diploma" >> Scarecrow.txt
+galitmoss@10-0-0-13 EmeraldCity % echo "Heart shaped watch" >> Tin-Man.txt
+galitmoss@10-0-0-13 EmeraldCity % echo "Medal" >> Cowardly-Lion.txt
+galitmoss@10-0-0-13 EmeraldCity % cd ..
+galitmoss@10-0-0-13 Week1 % tree
+.
+├── EmeraldCity
+│   ├── Cowardly-Lion.txt
+│   ├── Scarecrow.txt
+│   └── Tin-Man.txt
+├── House
+│   └── Toto.txt
+└── Oz
+    ├── Dorothy.txt
+    ├── Flying-Monkeys.txt
+    ├── Good-Witch-Of-The-North.txt
+    └── Good-Witch-Of-The-South.txt
+
+4 directories, 8 files
+galitmoss@10-0-0-13 Week1 % 
+
