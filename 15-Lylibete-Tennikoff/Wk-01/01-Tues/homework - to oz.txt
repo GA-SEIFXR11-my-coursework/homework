@@ -1,0 +1,25 @@
+1. mkdir "House" 
+cd "House"
+touch "Dorothy" "Toto"
+cd ../
+mkdir "Oz"
+cd "Oz"
+touch "Good Witch of the North"
+touch "Wicked Witch of the East"
+touch "Good Witch of the South"
+touch "Wicked Witch of the West"
+
+2. rm "Wicked Witch of the East"
+cd ../
+mv "Dorothy" /Users/lyli/Desktop/sei-course/homework-students/15-Lylibete-Tennikoff/Wk-01/Oz
+
+3. touch "Scarecrow" "Tin Man" "Cowardly Lion"
+mkdir "Emerald City"
+mv "Scarecrow" "Tin Man" "Cowardly Lion" /Users/lyli/Desktop/sei-course/homework-students/15-Lylibete-Tennikoff/Wk-01/Emerald-City
+
+4. cd "Oz"
+touch "Flying Monkeys"
+rm "Wicked Witch of the West"
+echo "diploma" >> "Scarecrow"
+echo "heart shaped watch" >> "Tin Man"
+echo "medal" >> "Lion"
