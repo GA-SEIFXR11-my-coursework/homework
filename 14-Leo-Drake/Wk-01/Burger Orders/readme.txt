@@ -1,0 +1,1 @@
+To use this webpage click on the items you desire to purchase and its summed and then once checkout button Is clicked a prompt displays the total cost of order.
