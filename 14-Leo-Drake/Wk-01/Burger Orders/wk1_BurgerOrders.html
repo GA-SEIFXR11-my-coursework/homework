@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>burger orders</title>
+    <link rel="stylesheet" href="wk1_BurgerOrders.css"/>
+    <script src ="wk1_BurgerOrder.js"></script>
+    
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Leo's Burgers!</h1>
+        <img src="https://media.istockphoto.com/id/1038356020/vector/restaurant-icon.jpg?s=612x612&w=0&k=20&c=Tk_v3JuJA4lz_8ZRJi78xS4p75Idqt97uEtYJciVtFI=" alt="Restuarant's Logo" class="centerImage">
+        <p id="headerText">No one can compete with our meat</p>  
+        
+    </div>
+    <div class="checkoutMenu">
+        <p class="menuHeader">We're a world renound Burger Joint that specialises in gourmet food and we've been satisfying customers for over 25 years
+        <br>click on the images of what you desire to purchase then click the checkout button once you have finished</p>
+        <h4 class="menuHeader">Menu</h4>
+        <button onClick="checkoutButtonToggle()">checkout</button>
+    </div>
+    <div class="menuDiv">
+
+        <h2>Mains</h2>
+        
+
+        <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/6:4/w_3756,h_2504,c_limit/Smashburger-recipe-120219.jpg" alt="cheeseburger"class="menuItems"id="cheeseBurger"onClick={handleClick(event)}>
+        <p>cheese burger...<span class="menuPrice">$20</span></p>
+        <img src="https://www.recipetineats.com/wp-content/uploads/2017/07/Chicken-Burgers-4.jpg" alt="chickenburger" class="menuItems"id="chickenBurger"onClick={handleClick(event)}>
+        <p>chicken burger...<span class="menuPrice">$18</span></p>
+        <img src="https://i.ytimg.com/vi/a19EY3YNStA/maxresdefault.jpg" alt="veggieburger" class="menuItems" id="veggieBurger"onClick={handleClick(event)}>
+        <p>veggie burger...<span class="menuPrice">$14</span></p>
+        <img src="https://img.delicious.com.au/54etp_IS/del/2015/10/pan-pickled-mushroom-and-haloumi-burgers-14032-1.jpg"alt="haloumi burger"class="menuItems"id="haloumiBurger"onClick={handleClick(event)}>
+        <p>Haloumi burger...<span class="menuPrice">$16</span></p>
+        <img src="https://dishingouthealth.com/wp-content/uploads/2022/04/PortobelloBurgers_Square.jpg"alt="mushroomburger" class="menuItems"id="mushroomBurger"onClick={handleClick(event)}>
+        <p>Mushroom burger...<span class="menuPrice">$15</span></p>
+
+        <h2>Sides</h2>
+
+        <img src="https://www.vindulge.com/wp-content/uploads/2021/09/Smoked-Onion-Rings.jpg"alt="Smoked-Onion-Rings" class="menuItems"id="onionRings"onClick={handleClick(event)}>
+        <p>Smoked Onion Rings...<span class="menuPrice">$5</span></p>
+        <img src="https://hungryhealthyhappy.com/wp-content/uploads/2022/03/Paprika-Chips-featured.jpg"alt="hot chips" class="menuItems"id="chips"onClick={handleClick(event)}>
+        <p>Chips...<span class="menuPrice">$4</span></p>
+        
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
