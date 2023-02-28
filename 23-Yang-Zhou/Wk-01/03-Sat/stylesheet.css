@@ -1,0 +1,41 @@
+.container {
+  background-color: bisque;
+  width: 600px;
+  margin: 0 auto;
+  /* display: grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menuHeader {
+  width: 400px;
+  /* background-color: red; */
+  /* align-self: center; */
+
+  /* make the header a flex container and center the child elems */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menuTitle {
+  color: #333;
+}
+
+.menuDescription {
+  width: 600px;
+  text-align: center;
+  align-self: center;
+}
+
+.burgerMenu,
+.friesMenu {
+  display: flex;
+}
+
+.orderSummary {
+  text-align: center;
+  width: 400px;
+  border: solid #333;
+}
