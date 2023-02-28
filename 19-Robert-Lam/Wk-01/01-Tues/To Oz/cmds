@@ -1,0 +1,20 @@
+Mkdir “To Oz”
+Cd “To Oz”
+Mkdir House
+Mkdir Oz
+Touch house/Dorothy
+Touch house/Toto
+Cd Oz
+Touch “Good Witch of the North” < x4 for each witch
+Rm “Wicked Witch of the East”
+Mv ../House/Dorothy .
+Touch Scarecrow
+Touch “Tin Man”
+Touch “Cowardly Lion”
+Mkdir ../“Emerald City”
+Mv Scarecrow “Tin Man” “Cowardly Lion” ../“Emerald City”/
+Touch ../”Flying Monkeys”
+Rm “Wicked Witch of the West”
+echo "diploma" >>  "Emerald City"/Scarecrow
+echo "heart shaped watch" >> "Emerald City"/"Tin Man"
+echo "medal" >> "Emerald City"/”Cowardly Lion”
