@@ -1,3 +1,4 @@
+function orderNow() {
 let burgPrice=0;
 let cheesePrice=5;
 let doublePrice=10;
@@ -6,7 +7,7 @@ let burgerType = prompt('what burger do you want');
 let burgNum = prompt('how many burgers?');
 let fries = prompt('want fries with that yes/no');
 if (burgerType === "Cheese") {
-    burgPrice = (cheesePrice*burgNum);
+   burgPrice = (cheesePrice*burgNum);
 } else if (burgerType === "Double") {
     burgPrice = (doublePrice*burgNum);
 } else if (burgerType === "Kahuna") {
@@ -24,4 +25,5 @@ if (fries === "yes") {
     };
 } else {
     alert("So that's " + burgNum + " " + burgerType + " without fries, costing a total of $" + burgPrice);
+};
 };
