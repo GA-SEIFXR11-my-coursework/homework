@@ -1,0 +1,46 @@
+body {
+    background-image: url(/Users/sude/Desktop/SEI-Course/homework-students/21-Su-Kayalidere/Wk-01/03-Sat/Unit1/burgerpic.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+}
+
+
+div {
+    position: relative;
+    margin: 100px 100px 100px 100px;
+    background-color: rgba(0, 0, 0, 0.9)
+
+}
+header {
+    text-align: Center;
+
+}
+button {
+    color: white;
+    background-color: red;
+    font-size: 20px;
+    padding: 14px 20px;
+
+}
+ul {
+    list-style: none;
+    padding: 10px 80px 40px 80px;
+
+}
+  
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+h3 {
+    font-size: 30px;
+    font-weight: bold;
+}
+  
+  
+  

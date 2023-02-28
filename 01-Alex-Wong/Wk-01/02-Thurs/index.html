@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex 3D Prints</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  </head>
+  
+</head>
+  <body>
+    <h1>3D Printing</h1>
+    <h2>design & prints by  Alex W</h2>
+    <div class="print">
+      <p>Products <br />
+      <small> We have thoughtfully designed various products for your daily needs! filler text filler textfiller text filler text</small></p>
+    </div>
+
+    <div class="fusion">
+      <p>Design <span class="price">Ask for price</span> <br />
+      <small> Have your own ideas or a design? We can assist you in designing the print for your needs. filler text filler text
+      </small></p>
+    </div>
+      
+    <div class="cura">
+      <p>Printing <span class="price">$19.99/100g</span><br />
+      <small>Choose from various filament types and quality. Pricing may vary based on print complexity, print duration, and amount of filament required. </small></p>
+    </div>
+
+    <script>
+      $('div').on('click', function() {
+          $(this).toggleClass('show-description');
+      });
+    </script>
+  </body>
+</html>
