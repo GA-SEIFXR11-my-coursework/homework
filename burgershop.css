@@ -1,0 +1,55 @@
+body{
+    background-image:url("https://i.pinimg.com/originals/8e/d9/5b/8ed95bf38bc11c63890da16ba9e895e0.jpg");
+    background-size: cover;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+}
+h1{
+    background-color:white;
+    font-size: 40px;
+    color:brown;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#cards {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 300px;
+    height: 315px;
+    border: 1px solid lightgray;
+  }
+  
+  .card:nth-child(2) {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .picture img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .description {
+    width: 100%;
+    height: 145px;
+    padding-right: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    color: whitesmoke;
+  }
+  
+  .description p {
+    font-size: 20px;
+    color: dimgray;
+    background-color: aliceblue;
+    text-align: center;
+  }
+
+  button{
+    text-align: center;
+
+  }
