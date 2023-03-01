@@ -1,0 +1,12 @@
+body {
+    font-size: 40px;
+    color: green;
+    text-align: center;
+    background: black;
+}
+.burgerList {
+    color: red;
+}
+.fryList {
+    color: blue;
+}

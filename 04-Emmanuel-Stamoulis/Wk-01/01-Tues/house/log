@@ -1,0 +1,7 @@
+ 
+mkdir directory_name create directory
+touch file create file
+rm -r deletes directory
+rm file deletes file
+mv file moves file
+echo to add text

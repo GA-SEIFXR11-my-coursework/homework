@@ -1,0 +1,57 @@
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ mkdir House Oz
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ cd House
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ touch Dorothy.txt Toto.txt
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ ls
+Dorothy.txt  Toto.txt
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ cd ../
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ Oz
+Oz: command not found
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ cd Oz
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ touch "Wicked Witch of the East.txt" "Wicked Witch of the West.txt" "Good Witch of the North.txt" "Good Witch of the South.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ ls
+'Good Witch of the North.txt'  'Good Witch of the South.txt'  'Wicked Witch of the East.txt'  'Wicked Witch of the West.txt'
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ rm "Wicked Witch of the East.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ cd ../
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ cd House
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ mv Dorothy ../
+mv: cannot stat 'Dorothy': No such file or directory
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ mv Dorothy.txt ../
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ ls
+Toto.txt
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ mv Toto.txt ../
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ ls
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/House$ cd ../
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ ls
+'1st Attempt commands.txt'   Dorothy.txt   House   Oz   Toto.txt   homework
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ mv Dorothy.txt Oz
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ mv Toto.txt Oz
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ ls
+'1st Attempt commands.txt'   House   Oz   homework
+aodl@DESKTOP-KPPE06C:~/sei-course/homework$ cd Oz
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ touch "Scarecrow.txt" "Tin Man.txt" "Cowardly Lion.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ cd Emerald City
+-bash: cd: too many arguments
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ mkdir Emerald City
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ ls
+ City  'Cowardly Lion.txt'   Dorothy.txt   Emerald  'Good Witch of the North.txt'  'Good Witch of the South.txt'   Scarecrow.txt  'Tin Man.txt'   Toto.txt  'Wicked Witch of the West.txt'
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ rm -r Emerald City
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ ls
+'Cowardly Lion.txt'   Dorothy.txt  'Good Witch of the North.txt'  'Good Witch of the South.txt'   Scarecrow.txt  'Tin Man.txt'   Toto.txt  'Wicked Witch of the West.txt'
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ mkdir "Emerald City"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ mv Dorothy.txt Toto.txt "Emerald City"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ ls
+'Cowardly Lion.txt'  'Emerald City'  'Good Witch of the North.txt'  'Good Witch of the South.txt'   Scarecrow.txt  'Tin Man.txt'  'Wicked Witch of the West.txt'
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ touch "Flying Monkeys.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ mv "Scarecrow.txt" "Tin Man.txt" "Cowardly Lion.txt" "Emerald City"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ ls
+'Emerald City'  'Flying Monkeys.txt'  'Good Witch of the North.txt'  'Good Witch of the South.txt'  'Wicked Witch of the West.txt'
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ rm "Wicked Witch of the West.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz$ cd "Emerald City"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$ ls
+'Cowardly Lion.txt'   Dorothy.txt   Scarecrow.txt  'Tin Man.txt'   Toto.txt
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$ echo "diploma" "Tin Man.txt"
+diploma Tin Man.txt
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$ echo "diploma" >> "Tin Man.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$ echo "heart-shaped watch" >> "Scarecrow.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$ echo "medal" >> "Cowardly Lion.txt"
+aodl@DESKTOP-KPPE06C:~/sei-course/homework/Oz/Emerald City$
