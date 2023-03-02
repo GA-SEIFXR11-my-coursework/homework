@@ -6,11 +6,21 @@ yellowPattern = new RegExp(yellow);
 grey = prompt("Now enter your grey letters, with no spaces.")
 newFormat = green.replace(/\./g, "_").split('').join(' ');
 yellowArray = yellow.split('');
+for (let i=yellowArray.length-1; i>= 0; i--) {
+    let item = yellowArray[i];
+    if (item == '.') {
+        index = yellowArray.indexOf(item);
+        yellowArray.splice(index, 1);
+    }
+}
 greyArray = grey.split('');
 document.querySelector('h3').textContent += newFormat;
+
+
 for (let n of wordList) {
     if (greenPattern.test(n) && !yellowPattern.test(n)) {
         if(yellowArray.every(letter => n.includes(letter)) && !greyArray.some(letter => n.includes(letter))) {
+            console.log(n);
             matchWord = document.createElement("p");
             matchWord.innerText = n;
             document.getElementById("matchWords").appendChild(matchWord);
