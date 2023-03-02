@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="a"></h1>
+    
+</body>
+<script>
+var menu = ['Steak', 'Fruit Salad', 'Tofurkey', 'Pork Chops'];
+/* Ask the user what they want to eat. Alert them as to whether their choice is vegan. */
+var choice = prompt('What do you want to eat?');
+if (menu.indexOf(choice) > -1) {
+  if (choice == 'Steak' || choice == 'Pork Chops') {
+    alert('Vegans beware!');
+  } else {
+    alert('This cuisine is vegan friendly.');
+  }
+} else {
+  alert('Sorry, we don\'t serve that here.');
+}
+</script>
+</html>

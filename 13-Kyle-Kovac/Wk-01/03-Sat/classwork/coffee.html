@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var user = prompt("do you want to brew your own coffee")
+    if(user === "y"){
+        var milk = prompt("do you want milk in your coffee? ")
+        if(milk === "y"){
+          var machine = prompt("do you own an espresson machine")
+            if(machine === "y"){
+                var dream = prompt("do you dream of your semester abroad in australia or new zealand")
+                    if(dream === "y"){
+                    alert("flat white")
+                }else{
+                    if(dream ==="n"){
+                       var alotofmilk = prompt('do you want alot of milk')
+                       if(alotofmilk === "y")
+                            alert("latte")
+                    }if(alotofmilk === "n"){
+                            alert("cappuccino")
+                    }
+                }
+            }else{
+                if(machine === "n"){
+                    prompt("bialelli")
+                }
+            }
+        }else{
+            if(milk === "n"){
+               var creative = prompt("do you like to get creative with your coffee")
+                if(creative === "y"){
+                    alert("aspresso")
+                }else{
+                    if(creative === "n"){
+                       var basic = prompt("do you want to stay nice and basic")
+                        if(basic === "y"){
+                            alert("french press")
+                        }else{
+                            if(basic === "n"){
+                            var geeky = prompt("no i want to get a little geeky are you a science geek")
+                                if(geeky === "y"){
+                                   var drama = prompt("do you want your coffee brewing to be dramatic?")
+                                        if(drama === "y"){
+                                            alert("siphon coffe")
+                                        } if(drama === "n"){
+                                            alert('chemex')
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        
+    }else{
+        if(user === "n"){
+            alert("thank you come again")
+        }
+    }
+
+</script>
+</html>
