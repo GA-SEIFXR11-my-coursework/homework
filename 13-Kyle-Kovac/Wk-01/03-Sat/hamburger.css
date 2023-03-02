@@ -1,0 +1,92 @@
+body{
+  background-image: url(/homework-students/13-Kyle-Kovac/Wk-01/03-Sat/hamburgerimg/background.webp);
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+h1{
+    text-align: center;
+}
+#flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  
+}
+
+#flex-container > div {
+  width: 500px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+#flex-container-order {
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  margin: auto;
+  display: none;
+}
+
+#flex-container-order > div {
+  width: 500px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+#flex-container-drinks {
+    
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  margin: auto;
+  display: none;
+    
+  }
+  
+  #flex-container-drinks > div {
+    width: 500px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    
+  }
+
+div{
+    border: 2px grey solid;
+}
+
+.displayItem{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    margin-top: 80px;
+}
+ 
+#zingerComboPic{
+  display: none;
+}
+
+#zingerPic{
+  display: none;
+}
+
+#bigmacComboPic{
+  display: none;
+}
+
+#bigmacPic{
+  
+  display: none;
+}
+
+#whopperComboPic{
+  display: none;
+}
+
+#whopperPic{
+  display: none;
+}
