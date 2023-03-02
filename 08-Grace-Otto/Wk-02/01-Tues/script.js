@@ -16,9 +16,6 @@ for (let i=yellowArray.length-1; i>= 0; i--) {
 greyArray = grey.split('');
 document.querySelector('h3').textContent += newFormat;
 
-console.log(greenPattern, yellowPattern);
-
-
 
 for (let n of wordList) {
     if (greenPattern.test(n) && !yellowPattern.test(n)) {
