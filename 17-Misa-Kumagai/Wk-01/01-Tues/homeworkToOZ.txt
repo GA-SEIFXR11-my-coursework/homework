@@ -1,0 +1,27 @@
+ 1, mkdir House
+ cd House
+ touch "Dorothy" "Toto"
+ cd ../
+ mkdir Oz
+ touch "Good Witch of the North"
+ touch "Wicked Witch of the East"
+ touch "Good Witch of the South"
+ touch "Wicked Witch of the West"
+
+ 2,
+ rm -r "Wicked Witch of the East"
+ mv Dorothy ../Oz
+
+ 3,
+ pwd
+ touch "Scarecrow" "Tin Man" "Cowardly Lion"
+ mkdir "Emerald City"
+ mv "Scarecrow" "Tin Man" "Cowardly Lion" ../"Emerald City"
+
+ 4,
+ cd Oz
+ touch "Flying Monkeys"
+ rm -r "Wicked Witch of the West"
+ echo diploma >> Scarecrow
+ echo "heart shaped watch" >> "Tin Man"
+ echo medal >> "Cowardly Lion"
