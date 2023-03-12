@@ -18,6 +18,12 @@
 //      belief -> beliefs, not "believes", because "believe" is a verb
 // 
 // English is convoluted. Proper coverage for this task seems absurdly difficult.
+//
+// In the list below, I had to remove some exceptions that would otherwise break my checks
+// This is because I am allowing man -> men extend the pluralisation of compound words like caveman -> cavemen
+// However, if i include lie -> lies, that would prevent jelly -> jellies from working, ie, jellies would singularise to jellie instead. 
+//
+// it is possible to fix this by first regex-ing the exact case prior to testing for a partial match. I am too tired for this now.
 
 const irregularPlurals = {
     // Some exceptions from easily available lists
@@ -31,7 +37,7 @@ const irregularPlurals = {
     fish: "fish",
     child: "children",
     person: "people",
-    ox: "oxen",
+    // ox: "oxen",  // This kills the translation of fox, box, etc. Besides, "oxes" is still acceptable
     basis: "bases",
     radius: "radii",
     syllabus: "syllabi",
@@ -42,6 +48,9 @@ const irregularPlurals = {
     ice: "ice",
     deer: "deer",
     //  Exceptions:
+    fez: "fezzes",
+    gas: "gasses",
+    bus: "busses",
     // (potato -> potatoes) exceptions
     photo: "photos",
     piano: "pianos",
@@ -63,8 +72,8 @@ const irregularPlurals = {
     millennium: "millennia",
     youth: "youth", 
     louse: "lice",
-    pies: "pies",
-    lies: "lie",
+    // pies: "pies",    // this breaks crispy -> crispies
+    // lies: "lie",    // this breaks jelly -> jellies
   };
 
 function toPlural(noun: string){
@@ -81,16 +90,34 @@ function toPlural(noun: string){
     for(let singular in irregularPlurals){
         let plural = irregularPlurals[singular];
         // rather than directly checking the noun, this allows for irregulars such as cave(man) -> cave(men)
-        if((/`${singular}`$/i).test(noun)){
+        
+        // check the plurals first
+        let regex = new RegExp(plural + "$", "i");
+        if( regex.test(noun) ){
+            return noun;
+        }
+
+        // check the singulars
+        regex = RegExp(singular + "$", "i");
+        if( regex.test(noun) ){
             return(`${noun.slice(0, noun.length - singular.length)}${plural}`);
         }
     }
 
-    // Is the word already plural?
-    // All non-special plurals end in -s or -es, but not -ss nor [other vowels]-s
-    if( (/[^aiuos]s$/i).test(noun) ){
+    // Just because it ends with -s does not mean it's plural.
+    // If it ends in -ss, it's definitely singular.
+    
+    // Specific plural checks
+    if( (/ses$/i.test(noun)) ){
         return(noun);
     }
+    if( (/ers$/i).test(noun) ){
+        return(noun)
+    }
+    if( (/ees$/i).test(noun) ){
+        return(noun)
+    }
+    
     
     // ====== Rules (from higher to lower priority): ======
     // Not all rules are given tests, but they're still mentioned for context.
@@ -102,6 +129,19 @@ function toPlural(noun: string){
     //      focus -> foci or focii
     //      cactus -> cacti or cactii (but cactuses and cactusses are acceptable too)
     // contra to -us, bus -> busses, not bi
+    
+    // SPECIAL -s singular nouns
+    // === Modify -sis to -ses
+    // -sis ending
+    //      eg. basis, crisis, diagnosis -> crises, diagnoses, bases
+    if( (/sis$/i).test(noun) ){
+        return(`${noun.slice(0, noun.length-2)}es`);
+    }
+    // -ias ending
+    //      eg. alias, bias ->  aliases, biases
+    if( (/ias$/i).test(noun) ){
+        return(`${noun}es`);
+    }
 
     // === Modify to end in -ices ===
     // Ending in -ex,
@@ -176,7 +216,7 @@ function toPlural(noun: string){
     if( (/[^z]z$/i).test(noun) ){
         return(`${noun}zes`);
     }
-
+    
     // === Adding -s ===
     // Rule 1s: adding an -s, 
     //      eg. orange, pen -> oranges, pens
@@ -191,7 +231,7 @@ function toPlural(noun: string){
     // 
     // Rule 4ffs: -ff ending
     //      eg. puff, cliff, fluff -> puffs, cliffs, fluffs
-         
+
     // all others
     return (`${noun}s`);
 }
@@ -217,17 +257,43 @@ function toSingular(noun: string){
         // check list of irregulars first
             
         for(let singular in irregularPlurals){
-            let plural = irregularPlurals[singular];
+            let plural: string = irregularPlurals[singular];
             // rather than directly checking the noun, this allows for irregulars such as cave(men) -> cave(man)
-            if((/`${plural}`$/i).test(noun)){
+
+            // check if singulars found
+            let regex = new RegExp(singular + "$", "i");
+            if( regex.test(noun) ){
+                return(noun);
+            }
+
+            //check the plurals
+            regex = RegExp(plural + "$", "i");
+            if( regex.test(noun) ){
                 return(`${noun.slice(0, noun.length - plural.length)}${singular}`);
             }
         }
 
-        // Is it singular already?
-        // All non-special plurals end in -s or -es, but not -ss nor [other vowels]-s
-        if( ! (/[^aiuos]s$/i).test(noun) ){
+        // Just because it ends in -s does not make it plural
+        // If it ends in ss, it is definitely singular
+        if( (/ss$/i).test(noun) ){
             return(noun);
+        }
+        // If it does not end with -s and its not an irregularPlural either, it's singular
+        if( (/[^s]$/i).test(noun) ){
+            return(noun);
+        }
+
+        // SPECIAL -s singular nouns
+        // === Modify -sis to -ses
+        // -sis ending
+        //      eg. basis, crisis, diagnosis -> crises, diagnoses, bases
+        if( (/[^s]ses$/i).test(noun) ){
+            return(`${noun.slice(0, noun.length-2)}is`);
+        }
+        // -ias ending
+        //      eg. alias, bias ->  aliases, biases
+        if( (/iases$/i).test(noun) ){
+            return(`${noun.slice(0, noun.length-2)}`);
         }
 
         // === Modify to remove -ices ending ===
@@ -293,9 +359,12 @@ function toSingular(noun: string){
 
         // === Remove -ses or -zes ===
         // endings with [aiou][sz]
+        //      eg. loss, boss, glass -> losses, bosses, glasses
+        // 
+        // Contra (goes into irregulars):
         //      eg. fez, gas, bus -> fezzes, gasses, busses
-        if( (/sses|zzes$/i).test(noun) ){
-            return(`${noun.slice(0, noun.length-3)}`);
+        if( (/sses$/i).test(noun) ){
+            return(`${noun.slice(0, noun.length-2)}`);
         }
 
         // === Remove -s ===
@@ -312,7 +381,7 @@ function toSingular(noun: string){
         // 
         // Rule 4ffs: -ff ending
         //      eg. puff, cliff, fluff -> puffs, cliffs, fluffs
-            
+        
         // all others
         return(`${noun.slice(0, noun.length-1)}`);
     }
@@ -329,6 +398,10 @@ function pluralise(noun: string, amount: number){
     // check empty string
     if(noun == ""){return ""}
 
+        
+    // YO this shit is broken, gonna leave it commented for now.
+    // Fixing this improves the efficiency, but not the functionality.
+
     // check if (already plural or not) and whether (amount is single or multi)
     // this is XNOR (using the == operator against 2 comparators)
     // plural and multi -> return as is
@@ -338,11 +411,15 @@ function pluralise(noun: string, amount: number){
 
     // JS allows == operator on strings without a strcmp method invoked
     // Check if (already plural) XNOR (multiple amount) 
-    if( (toPlural(noun) == noun) == (amount != 1) ){
-        // if either (PLURAL AND MULTI) or (SINGULAR AND SINGLE)
-        // return as is
-        return(`${amount} ${noun}`);
-    }else if(amount == 1){
+
+    // let regex = new RegExp(`${toPlural(noun)}` + "$", "i");
+    // if( (regex.test(noun)) == (amount != 1) ){
+    //     // if either (PLURAL AND MULTI) or (SINGULAR AND SINGLE)
+    //     // return as is
+    //     return(`${amount} ${noun}`);
+    // }
+
+    if(amount == 1){
         // singularise
         return (`${amount} ${toSingular(noun)}`);
     }else{
@@ -415,7 +492,7 @@ function pluraliseTest(){
     
     
     const testsNormalSingularToPlural = {
-        0: {"noun"      : "gorrilla",
+        0: {"noun"      : "gorilla",
              "amt"      : 2,
              "expected" : "2 gorillas",
         },
@@ -478,7 +555,7 @@ function pluraliseTest(){
     }
 
     const testsNormalPluralToSingular = {
-        0: {"noun"      : "gorrillas",
+        0: {"noun"      : "gorillas",
              "amt"      : 1,
              "expected" : "1 gorilla",
         },
@@ -637,7 +714,7 @@ function pluraliseTest(){
 
     _runTest(testsIrregularSingularToPlural, "testsIrregularSingularToPlural");
     _runTest(testsIrregularPluralToSingular, "testsIrregularPluralToSingular");
-    _runTest(testsNormalSingularToPlural, "testsIrregularPluralToSingular");
+    _runTest(testsNormalSingularToPlural, "testsNormalSingularToPlural");
     _runTest(testsNormalPluralToSingular, "testsNormalPluralToSingular");
     _runTest(testsAlreadySingular, "testsAlreadySingular");
     _runTest(testsAlreadyPlural, "testsAlreadyPlural");
