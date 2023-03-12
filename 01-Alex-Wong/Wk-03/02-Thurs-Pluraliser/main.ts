@@ -686,6 +686,41 @@ function pluraliseTest(){
         },
     }
 
+    const testsMoreBs = {
+        0: {"noun"      : "pies",
+            "amt"       : 1,
+            "expected"  : "1 pie",
+        },
+        1: {"noun"      : "pie",
+            "amt"       : 2,
+            "expected"  : "2 pies",
+        },
+        2: {"noun"      : "oxen",
+            "amt"       : 1,
+            "expected"  : "1 ox",
+        },
+        3: {"noun"      : "ox",
+            "amt"       : 2,
+            "expected"  : "2 oxen",
+        },
+        4: {"noun"      : "waves",
+            "amt"       : 1,
+            "expected"  : "1 wave",
+        },
+        5: {"noun"      : "wave",
+            "amt"       : 2,
+            "expected"  : "2 waves",
+        },
+        6: {"noun"      : "staves",
+            "amt"       : 1,
+            "expected"  : "1 staff",
+        },
+        7: {"noun"      : "staff",
+            "amt"       : 2,
+            "expected"  : "2 staves",
+        },
+    }
+
     function _runTest(testParams: object, objName: string){
         console.log(`Running ${Object.keys(testParams).length} tests in ${objName}`);
         
@@ -719,6 +754,7 @@ function pluraliseTest(){
     _runTest(testsAlreadySingular, "testsAlreadySingular");
     _runTest(testsAlreadyPlural, "testsAlreadyPlural");
     _runTest(testsOddNumbers, "testsOddNumbers");
+    _runTest(testsMoreBs, "testsMoreBs");
 
     return;
 }
