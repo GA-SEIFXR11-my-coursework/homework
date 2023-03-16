@@ -1,0 +1,37 @@
+body{
+    display: flex;
+    background-color: silver;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+textarea{
+    width: 60%;
+    height: 3em;
+    font-size: 48px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.keyboard{
+    display: inline-block;
+    width: 60%;
+    border: solid 1px chocolate;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    border: dotted 1px black;
+}
+.key{
+    flex-basis: 72px;
+    height: 72px;
+    border: solid 3px darkred;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    margin: 2px;
+    font-size: 1.5em;
+    color: darkred;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#spacebar{
+    flex-basis: 256px;
+}
