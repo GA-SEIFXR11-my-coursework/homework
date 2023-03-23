@@ -1,38 +1,52 @@
 // [ -e script.js ] && rm script.js; tsc main.ts; mv main.js script.js  
 
 // Didn't give myself enough time to figure out how to nicely seperate the data to a seperate file. I gave up. 
-var gb_pets = [
+
+interface Pet {
+    id: string,
+    name: string,
+    picture: string,
+    status: string,
+}
+
+var gb_pets: Pet[] = [
    {
+      id: "0x0000",
       name: "Truffle",
       picture:
          "https://media.wired.com/photos/593261cab8eb31692072f129/master/w_2560%2Cc_limit/85120553.jpg",
       status: "available",
    },
    {
+      id: "0x0001",
       name: "Mittens",
       picture:
          "http://www.zooborns.com/.a/6a010535647bf3970b0112790d78ef28a4-pi",
       status: "hold",
    },
    {
+      id: "0x0002",
       name: "Shadow",
       picture:
          "https://static.israel21c.org/www/uploads/2020/07/main-pic-4-1520x855.jpg",
       status: "adopted",
    },
    {
+      id: "0x0003",
       name: "Tiger",
       picture:
          "https://media.4-paws.org/2/8/c/d/28cd835ed917bc427bddaeb2795e9c8b2c9bfc77/VIER%20PFOTEN_2020-05-12_020-3425x1792-1200x628.jpg",
       status: "available",
    },
    {
+      id: "0x0004",
       name: "Marmalade",
       picture:
          "https://varmentguard.com/uploads/permanent/963dbe2472d23882bf65f6fc5748ffbe.jpg",
       status: "adopted",
    },
    {
+      id: "0x0005",
       name: "Fluffy",
       picture:
          "https://www.kids-world-travel-guide.com/images/kangaroo_with_joey_claudiobertoloni.jpg",
@@ -40,20 +54,22 @@ var gb_pets = [
    },
 ];
 
-var gb_displayedPets = [{}].pop();
+var gb_displayedPets: Pet[] = [];
 
 function pageLoad(){
-    gb_displayedPets = sortByAvailability(gb_pets);
+    gb_displayedPets = sortPetsByAvailability(gb_pets);
     reloadPetListSection(gb_displayedPets);
+    // dispPetCardIds();
     return;
 }
 
-function sortByAvailability(pets){
+function sortPetsByAvailability(pets): Pet[]{
     // This is a very poorly implemented sort. It is very bad.
     // just trying to make it work asap now
-    var sortedPets = [{}];
+
+    var sortedPets: Pet[] = [];
+
     //available
-    sortedPets.pop();
     for(let pet of pets){
         if(pet.status == "available"){
             sortedPets.push(pet);
@@ -74,6 +90,19 @@ function sortByAvailability(pets){
     return sortedPets;
 }
 
+// for testing
+function dispPetCardIds(){
+    let cards = document.getElementsByClassName("petCard");
+    for(let key in cards){
+        if( ! (/[0-9]$/).test(key) ){ break }
+        let petCard = cards.item(Number(key)) as HTMLElement;
+        let name = petCard.querySelector(".petInfo")?.querySelector(".p_petName")?.textContent;
+        let meta = petCard.querySelector('meta')?.getAttribute("pet_id");
+        console.log(`${name} ${meta}`);
+    }
+    return;
+}
+
 function buttonShowHideAvailable(){
     var buttonElem = document.getElementById("b_showHideAvailable") as HTMLElement;
     if(buttonElem.textContent == "Show Available Only"){
@@ -90,6 +119,8 @@ function buttonShowHideAvailable(){
         let elemsPetInfo = document.getElementsByClassName("petInfo") as HTMLCollection;
         let elemsPetButtons = document.getElementsByClassName("petButtons") as HTMLCollection;
         for(let key in elemsPetInfo){
+            // more black magic. I don't know why the .item() method is needed but it is.
+            if( ! (/[0-9]$/).test(key) ){ break }
             let thisPetInfoElem = elemsPetInfo.item(Number(key)) as HTMLElement;
             let thisPetButtonsElem = elemsPetButtons.item(Number(key)) as HTMLElement;
             let statusElem = thisPetInfoElem.getElementsByClassName("p_petStatus")[0];
@@ -120,8 +151,13 @@ function reloadPetListSection(pets){
 
     for(let pet of pets){
         // pet info
-        var div_petCard = document.createElement("div");
+        // DO NOT USE "var" as it creates a variable pointer. "let" creates a seperate pointer each loop
+        let div_petCard = document.createElement("div");
         div_petCard.className = "petCard";
+        
+        var new_meta = document.createElement("meta");
+        new_meta.setAttribute("pet_id", pet.id);
+        div_petCard.appendChild(new_meta);
 
         var div_petInfo = document.createElement("div");
         div_petInfo.className = "petInfo";
@@ -164,12 +200,15 @@ function reloadPetListSection(pets){
 
         var newButtonAdopt = document.createElement("button");
         newButtonAdopt.textContent = "Adopt";
+        newButtonAdopt.className = "buttonAdopt";
 
         var newButtonCancel = document.createElement("button");
         newButtonCancel.textContent = "Cancel Hold";
+        newButtonCancel.className = "buttonCancel";
 
         var newButtonConfirm = document.createElement("button");
         newButtonConfirm.textContent = "Confirm Adoption";
+        newButtonConfirm.className = "buttonConfirm";
         
         switch(pet.status){
             case "available":
@@ -190,6 +229,52 @@ function reloadPetListSection(pets){
             default:
                 break;
         }
+        
+        newButtonAdopt.addEventListener("click", function(){
+            let thisAdoptButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonAdopt") as HTMLButtonElement;
+            thisAdoptButton.disabled = true;
+            
+            let thisCancelButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonCancel") as HTMLButtonElement;
+            thisCancelButton.disabled = false;
+
+            let thisConfirmButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonConfirm") as HTMLButtonElement;
+            thisConfirmButton.disabled = false;
+            
+            pet.status = "hold";
+            reloadPetListSection(gb_displayedPets);
+            gb_pets = gb_displayedPets;
+        }.bind(this,div_petCard),false);
+
+        newButtonCancel.addEventListener("click", function(){
+            let thisAdoptButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonAdopt") as HTMLButtonElement;
+            thisAdoptButton.disabled = false;
+            
+            let thisCancelButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonCancel") as HTMLButtonElement;
+            thisCancelButton.disabled = true;
+
+            let thisConfirmButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonConfirm") as HTMLButtonElement;
+            thisConfirmButton.disabled = true;
+
+            pet.status = "available";
+            reloadPetListSection(gb_displayedPets);
+            gb_pets = gb_displayedPets;
+        }.bind(this,div_petCard),false);
+
+        newButtonConfirm.addEventListener("click", function(){
+            let thisAdoptButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonAdopt") as HTMLButtonElement;
+            thisAdoptButton.disabled = true;
+            
+            let thisCancelButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonCancel") as HTMLButtonElement;
+            thisCancelButton.disabled = true;
+
+            let thisConfirmButton = div_petCard.querySelector(".petButtons")?.querySelector(".buttonConfirm") as HTMLButtonElement;
+            thisConfirmButton.disabled = true;
+
+            pet.status = "adopted";
+            reloadPetListSection(gb_displayedPets);
+            gb_pets = gb_displayedPets;
+        }.bind(this,div_petCard),false);
+        
         div_petButtons.appendChild(newButtonAdopt);
         div_petButtons.appendChild(newButtonCancel);
         div_petButtons.appendChild(newButtonConfirm);
@@ -199,5 +284,76 @@ function reloadPetListSection(pets){
     }
 
     return;
+}
+
+
+
+
+
+// Currently unused. Cooked this up to manipulate IDs for making new pets.
+
+/**
+ * This function aims to replicate the functionality of the String.padStart() method
+ * Eg. padStart("asdf", 15, "123") ->  "12312312312asdf"
+ * @param targetStr 
+ * @param targetLen 
+ * @param padStr 
+ * @returns 
+ */
+function padStart(targetStr: string, targetLen: number, padStr: string): string{
+    let initLen: number = targetStr.length;
+    let padLen: number = padStr.length;
+    let lenDiff: number = targetLen - initLen;
+    let N: number;
+    let pad: string = "";
+    let ret: string = targetStr;
+
+    if(lenDiff <= 0){ return ret }
+
+    N = Math.floor(lenDiff/padLen);
+    for(let i=0; i < N; i++){
+        pad += padStr;
+    }
+    
+    N = lenDiff % padLen;
+    for(let i=0; i < N; i++){
+        pad += padStr[i];
+    }
+
+    ret = pad + ret;
+    return ret;
+}
+
+/**
+ * Takes in a hexStr, adds the decimal value provided, and returns the new hexStr.
+ * hexDigits ensures length of hexstring.
+ * Eg. addToHexStr("0x0019", 3, 4) -> "0x001D"
+ * @param hexStr 
+ * @param addDec 
+ * @param hexDigits 
+ * @returns 
+ */
+function addToHexStr(hexStr: string, addDec: number, hexDigits: number){
+    let retval: string;
+    let val: number;
+
+    let regex = new RegExp(`^0x[0-9|A-F]{${hexDigits}}$`); // case sensitive
+    if( ! regex.test(hexStr)){
+        console.error("Invalid hexStr input value.");
+        return "";
+    }
+    
+    val = Number(hexStr);
+    val += addDec;
+    // padStart() not defined prior to ES2017. 
+    // retval = "0x" + val.toString(16).padStart(hexDigits,"0").toUpperCase();
+    retval = "0x" + padStart(val.toString(16), 4, "0").toUpperCase();
+
+    if( ! regex.test(retval)){
+        console.error("Invalid hexStr output. Ensure correct hexDigits. Ensure no overflow occured.");
+        return "";
+    }
+
+    return retval;
 }
 
