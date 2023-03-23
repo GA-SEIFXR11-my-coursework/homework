@@ -37,10 +37,9 @@ var gb_pets = [
         status: "available",
     },
 ];
-var gb_displayedPets = [];
 function pageLoad() {
-    gb_displayedPets = sortPetsByAvailability(gb_pets);
-    reloadPetListSection(gb_displayedPets);
+    gb_pets = sortPetsByAvailability(gb_pets);
+    reloadPetListSection(gb_pets);
     // dispPetCardIds();
     return;
 }
@@ -70,21 +69,6 @@ function sortPetsByAvailability(pets) {
         }
     }
     return sortedPets;
-}
-// for testing
-function dispPetCardIds() {
-    var _a, _b, _c;
-    var cards = document.getElementsByClassName("petCard");
-    for (var key in cards) {
-        if (!(/[0-9]$/).test(key)) {
-            break;
-        }
-        var petCard = cards.item(Number(key));
-        var name_1 = (_b = (_a = petCard.querySelector(".petInfo")) === null || _a === void 0 ? void 0 : _a.querySelector(".p_petName")) === null || _b === void 0 ? void 0 : _b.textContent;
-        var meta = (_c = petCard.querySelector('meta')) === null || _c === void 0 ? void 0 : _c.getAttribute("pet_id");
-        console.log("".concat(name_1, " ").concat(meta));
-    }
-    return;
 }
 function buttonShowHideAvailable() {
     var buttonElem = document.getElementById("b_showHideAvailable");
@@ -211,8 +195,7 @@ function reloadPetListSection(pets) {
             var thisConfirmButton = (_c = div_petCard.querySelector(".petButtons")) === null || _c === void 0 ? void 0 : _c.querySelector(".buttonConfirm");
             thisConfirmButton.disabled = false;
             pet.status = "hold";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this_1, div_petCard), false);
         newButtonCancel.addEventListener("click", function () {
             var _a, _b, _c;
@@ -223,8 +206,7 @@ function reloadPetListSection(pets) {
             var thisConfirmButton = (_c = div_petCard.querySelector(".petButtons")) === null || _c === void 0 ? void 0 : _c.querySelector(".buttonConfirm");
             thisConfirmButton.disabled = true;
             pet.status = "available";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this_1, div_petCard), false);
         newButtonConfirm.addEventListener("click", function () {
             var _a, _b, _c;
@@ -235,8 +217,7 @@ function reloadPetListSection(pets) {
             var thisConfirmButton = (_c = div_petCard.querySelector(".petButtons")) === null || _c === void 0 ? void 0 : _c.querySelector(".buttonConfirm");
             thisConfirmButton.disabled = true;
             pet.status = "adopted";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this_1, div_petCard), false);
         div_petButtons.appendChild(newButtonAdopt);
         div_petButtons.appendChild(newButtonCancel);
@@ -252,6 +233,21 @@ function reloadPetListSection(pets) {
     return;
 }
 // Currently unused. Cooked this up to manipulate IDs for making new pets.
+// for testing
+function dispPetCardIds() {
+    var _a, _b, _c;
+    var cards = document.getElementsByClassName("petCard");
+    for (var key in cards) {
+        if (!(/[0-9]$/).test(key)) {
+            break;
+        }
+        var petCard = cards.item(Number(key));
+        var name_1 = (_b = (_a = petCard.querySelector(".petInfo")) === null || _a === void 0 ? void 0 : _a.querySelector(".p_petName")) === null || _b === void 0 ? void 0 : _b.textContent;
+        var meta = (_c = petCard.querySelector('meta')) === null || _c === void 0 ? void 0 : _c.getAttribute("pet_id");
+        console.log("".concat(name_1, " ").concat(meta));
+    }
+    return;
+}
 /**
  * This function aims to replicate the functionality of the String.padStart() method
  * Eg. padStart("asdf", 15, "123") ->  "12312312312asdf"

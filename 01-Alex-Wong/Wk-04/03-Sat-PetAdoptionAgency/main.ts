@@ -54,11 +54,9 @@ var gb_pets: Pet[] = [
    },
 ];
 
-var gb_displayedPets: Pet[] = [];
-
 function pageLoad(){
-    gb_displayedPets = sortPetsByAvailability(gb_pets);
-    reloadPetListSection(gb_displayedPets);
+    gb_pets = sortPetsByAvailability(gb_pets);
+    reloadPetListSection(gb_pets);
     // dispPetCardIds();
     return;
 }
@@ -88,19 +86,6 @@ function sortPetsByAvailability(pets): Pet[]{
         }
     }
     return sortedPets;
-}
-
-// for testing
-function dispPetCardIds(){
-    let cards = document.getElementsByClassName("petCard");
-    for(let key in cards){
-        if( ! (/[0-9]$/).test(key) ){ break }
-        let petCard = cards.item(Number(key)) as HTMLElement;
-        let name = petCard.querySelector(".petInfo")?.querySelector(".p_petName")?.textContent;
-        let meta = petCard.querySelector('meta')?.getAttribute("pet_id");
-        console.log(`${name} ${meta}`);
-    }
-    return;
 }
 
 function buttonShowHideAvailable(){
@@ -241,8 +226,7 @@ function reloadPetListSection(pets){
             thisConfirmButton.disabled = false;
             
             pet.status = "hold";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this,div_petCard),false);
 
         newButtonCancel.addEventListener("click", function(){
@@ -256,8 +240,7 @@ function reloadPetListSection(pets){
             thisConfirmButton.disabled = true;
 
             pet.status = "available";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this,div_petCard),false);
 
         newButtonConfirm.addEventListener("click", function(){
@@ -271,8 +254,7 @@ function reloadPetListSection(pets){
             thisConfirmButton.disabled = true;
 
             pet.status = "adopted";
-            reloadPetListSection(gb_displayedPets);
-            gb_pets = gb_displayedPets;
+            reloadPetListSection(pets);
         }.bind(this,div_petCard),false);
         
         div_petButtons.appendChild(newButtonAdopt);
@@ -290,7 +272,23 @@ function reloadPetListSection(pets){
 
 
 
+
+
+
 // Currently unused. Cooked this up to manipulate IDs for making new pets.
+
+// for testing
+function dispPetCardIds(){
+    let cards = document.getElementsByClassName("petCard");
+    for(let key in cards){
+        if( ! (/[0-9]$/).test(key) ){ break }
+        let petCard = cards.item(Number(key)) as HTMLElement;
+        let name = petCard.querySelector(".petInfo")?.querySelector(".p_petName")?.textContent;
+        let meta = petCard.querySelector('meta')?.getAttribute("pet_id");
+        console.log(`${name} ${meta}`);
+    }
+    return;
+}
 
 /**
  * This function aims to replicate the functionality of the String.padStart() method
