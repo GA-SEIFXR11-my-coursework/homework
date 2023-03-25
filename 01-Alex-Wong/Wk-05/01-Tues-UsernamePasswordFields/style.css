@@ -1,0 +1,36 @@
+.form_question{
+    border: solid 1px black;
+    max-width: 50%;
+    margin: 20px;
+    padding: 10px;
+}
+em{
+    font-style: normal;
+    font-weight: bold;
+}
+.info{
+    display: none;
+}
+.form_question > p{
+    margin: 0px;
+}
+.form_question > .warn{
+    color: red;
+}
+.form_question > .eye{
+    display: inline-block;
+    background-image: url('images/eye-slash.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: solid 1px black;
+    min-height: 36px;
+    min-width: 36px;
+    margin: 0px 0px -10px 0px;
+}
+.form_question > .password_strength{
+    display: inline-block;
+}
+.form_question > .password_strength > p{
+    display: inline-block;
+}
