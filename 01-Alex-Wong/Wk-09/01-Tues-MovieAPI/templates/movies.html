@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block main_content %}
+    {% for v in movies %}
+        <div class="movieCard">
+            <p>Title: {{ v["Title"] }}</p>
+            <p>Year: {{ v["Year"] }}</p>
+            <img src="{{ v["Poster"] }}"></img>
+        </div>
+    {% endfor %}
+{% endblock %}
