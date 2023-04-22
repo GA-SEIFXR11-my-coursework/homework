@@ -6,13 +6,14 @@ import requests
 
 app = Flask(__name__)
 class Movie_Searcher():
+    # https://www.omdbapi.com/
     class Options(Enum):
         BY_SEARCH = "by_search"
         BY_TITLE = "by_title"
 
     url_base = "https://www.omdbapi.com/"
     apikey = ""
-    title = ""
+    search_title = ""
     response: any
     
     def read_apikey(self) -> str:
@@ -24,32 +25,31 @@ class Movie_Searcher():
         return apikey
 
     def _search_movies(self, option: Options):
-        url_base = self.url_base
-        url_api = f"?apikey={self.apikey}"
-        title_formatted = "+".join(self.title.split())
+        title_formatted = "+".join(self.search_title.split())
         match option:
             case self.Options.BY_SEARCH:
-                url_search = f"s={title_formatted}"
+                url = f"{self.url_base}?apikey={self.apikey}&s={title_formatted}"
             case self.Options.BY_TITLE:
-                url_search = f"t={title_formatted}"
+                url = f"{self.url_base}?apikey={self.apikey}&t={title_formatted}"
             case _:
                 raise ValueError(f"Invalid option: {option}")
-        url = f"{url_base}{url_api}&{url_search}"
         response = requests.get(url).json()
         self.response = response
         return response
     
+    # BY_TITLE seems useless ...
     def search_all_movies(self):
         return self._search_movies(self.Options.BY_SEARCH)
     
     #  Need to implement a "by ID" search to get specifc movie
-    def search_specific_movie(self):
-        return self._search_movies(self.Options.BY_TITLE)
+    def search_movie_by_id(self, search_id):
+        url = f"{self.url_base}?apikey={self.apikey}&i={search_id}"
+        response = requests.get(url).json()
+        self.response = response
+        return response
     
-    
-    
-    def set_title(self, title):
-        self.title = title
+    def set_search_title(self, title):
+        self.search_title = title
         return
         
 movie_searcher = Movie_Searcher()
@@ -65,8 +65,15 @@ def html_not_found():
 
 @app.route("/movie")
 def html_movie():
-    
-    return render_template("movie.html")
+    movie_id = req.args.get("imdbID")
+    if movie_id == None:
+        try:
+            movie_id = movie_searcher.response["Search"][0]["imdbID"]
+        except:
+            return render_template("movie_not_found.html")
+            # raise ValueError("Invalid movie_searcher.response")
+    movie = movie_searcher.search_movie_by_id(movie_id)
+    return render_template("movie.html", movie=movie)
 
 @app.route("/movies")
 def html_movies():
@@ -76,7 +83,7 @@ def html_movies():
 @app.route("/get_title")
 def get_title():
     title = req.args.get("title")
-    movie_searcher.set_title(title)
+    movie_searcher.set_search_title(title)
     response = movie_searcher.search_all_movies()
     if response["Response"] == "False":
         return redirect("/movie_not_found")

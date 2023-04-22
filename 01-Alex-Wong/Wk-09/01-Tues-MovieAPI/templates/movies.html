@@ -4,7 +4,13 @@
         <div class="movieCard">
             <p>Title: {{ v["Title"] }}</p>
             <p>Year: {{ v["Year"] }}</p>
-            <img src="{{ v["Poster"] }}"></img>
+            {% if v["Poster"] != "N/A" %}
+                <img src="{{ v["Poster"] }}"></img>
+            {% endif %}
+            <form action="/movie" method="GET">
+                <input type="hidden" name="imdbID" value="{{ v["imdbID"] }}" >
+                <input type="submit" value="See More">
+            </form>
         </div>
     {% endfor %}
 {% endblock %}

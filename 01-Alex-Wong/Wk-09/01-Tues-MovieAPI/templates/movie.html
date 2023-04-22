@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block main_content %}
-    <h2>{{ title }}</h2>
-    <p>Released: {{ release_year }}</p>
-    <img src="{{ img_url }}"></img>
+    {% for k,v in movie.items() %}
+        {% if k == "Response" %}
+        {% elif k == "Poster" %}
+            <img src="{{v}}"></img>
+        {% elif k == "Ratings" %}
+            <p>{{k}}</p>
+            {% for rating in v %}
+                <p>Source: {{ rating["Source"] }}</p>
+                <p>Value: {{ rating["Value"] }}</p>
+            {% endfor %}
+        {% else %}
+            <p><em>{{k}}:</em><p>
+            <p>{{v}}<p>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
