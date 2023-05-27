@@ -5,10 +5,7 @@
 function onlyEven(num_array: number[]){
     let even_nums = num_array
         .filter(function(val: number){
-            if(val % 2 == 0){
-                return true
-            }
-            return false
+            val % 2 == 0
         })
     return even_nums
 }
@@ -26,7 +23,7 @@ function countIntegers(num_array: number[]){
                 return(accumulator + 1)
             }
             return accumulator
-        })
+        }, 0)
     return count
 }
 console.log(
@@ -78,10 +75,7 @@ var inventory = [
 
 // 1. Write an expression using array iterator methods (like filter and reduce) to compute the total value of the machines in the inventory array.
 var machines = inventory.filter(function(val){
-    if(val["type"] == "machine"){
-        return true
-    }
-    return false
+    return(val["type"] == "machine")
 })
 
 let totalValueOfMachines = machines
@@ -101,10 +95,7 @@ console.log()
 // 2. Get an array of all the machines with value over 500.
 let machinesOver500 = machines
     .filter(function(val){
-        if(val["value"] > 500){
-            return true
-        }
-        return false
+        return(val["value"] > 500)
     })
 
 console.log(
@@ -123,10 +114,7 @@ let totalByType = Array.from(types)
     .map(function(type){
         let typedTotal = inventory
             .filter(function(val){
-                if(val["type"] == type){
-                    return true
-                }
-                return false
+                return(val["type"] == type)
             })
             .reduce(function(accumulator,next){
                 accumulator["value"] += next["value"]

@@ -4,10 +4,7 @@
 function onlyEven(num_array) {
     let even_nums = num_array
         .filter(function (val) {
-        if (val % 2 == 0) {
-            return true;
-        }
-        return false;
+        val % 2 == 0;
     });
     return even_nums;
 }
@@ -22,7 +19,7 @@ function countIntegers(num_array) {
             return (accumulator + 1);
         }
         return accumulator;
-    });
+    }, 0);
     return count;
 }
 console.log("countIntegers([4, 2.2, 5, 6, 4.2, 8.2, 4]) => expect 4", countIntegers([4, 2.2, 5, 6, 4.2, 8.2, 4]) // => 4
@@ -61,10 +58,7 @@ var inventory = [
 ];
 // 1. Write an expression using array iterator methods (like filter and reduce) to compute the total value of the machines in the inventory array.
 var machines = inventory.filter(function (val) {
-    if (val["type"] == "machine") {
-        return true;
-    }
-    return false;
+    return (val["type"] == "machine");
 });
 let totalValueOfMachines = machines
     .map(function (val) {
@@ -78,10 +72,7 @@ console.log();
 // 2. Get an array of all the machines with value over 500.
 let machinesOver500 = machines
     .filter(function (val) {
-    if (val["value"] > 500) {
-        return true;
-    }
-    return false;
+    return (val["value"] > 500);
 });
 console.log("2. Machines over 500 => expect machine:5000, machine:650", machinesOver500);
 console.log();
@@ -94,10 +85,7 @@ let totalByType = Array.from(types)
     .map(function (type) {
     let typedTotal = inventory
         .filter(function (val) {
-        if (val["type"] == type) {
-            return true;
-        }
-        return false;
+        return (val["type"] == type);
     })
         .reduce(function (accumulator, next) {
         accumulator["value"] += next["value"];
