@@ -1,0 +1,7 @@
+// add the following into vscode settings.json
+// to ignore linter in ejs scripts and styles
+https://github.com/Digitalbrainstem/ejs-grammar/issues/46
+{
+    "html.validate.scripts": false,
+    "html.validate.styles": false
+}

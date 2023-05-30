@@ -1,0 +1,22 @@
+{
+  "name": "express_compliment",
+  "version": "1.0.0",
+  "description": "Wk14-Tue Homework. A version of Emergency Compliment.",
+  "main": "app.js",
+  "scripts": {
+    "run": "nodemon app.ts",
+    "run-nomon": "npx ts-node app.ts", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alexw",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.2.5"
+  }
+}
