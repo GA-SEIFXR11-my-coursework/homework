@@ -13,6 +13,14 @@
 <![endif]-->
 
     <h1><%= now %></h1>
-
+    <form action="/compliment" method="GET">
+        <div>
+          <label for="i_name">Whats your name?</label>
+          <input name="name" id="i_name" value="" />
+        </div>
+        <div>
+          <button>Receive compliment (it's free!)</button>
+        </div>
+      </form>
 </body>
 </html>

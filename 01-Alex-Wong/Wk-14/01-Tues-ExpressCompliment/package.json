@@ -4,8 +4,8 @@
   "description": "Wk14-Tue Homework. A version of Emergency Compliment.",
   "main": "app.js",
   "scripts": {
-    "run": "nodemon app.ts",
-    "run-nomon": "npx ts-node app.ts", 
+    "start": "nodemon app.ts",
+    "start-nomon": "npx ts-node app.ts", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "alexw",

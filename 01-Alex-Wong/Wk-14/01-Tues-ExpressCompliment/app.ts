@@ -15,7 +15,7 @@ const compliments = [
     "Your creativity knows no bounds; you have a unique perspective on everything.",
     "Your perseverance and determination are truly admirable.",
     "Your sense of humor never fails to bring a smile to my face.",
-    "You have an incredible talent for [insert skill or hobby].",
+    "You have are incredibly talented.",
     "Your voice is soothing and enchanting.",
     "Your thoughtfulness and attentiveness make you an amazing friend.",
     "Your ability to listen and understand others is a rare and valuable quality.",
@@ -49,10 +49,11 @@ app.get("/", (_req, _res) => {
 app.get("/compliment", (_req, _res)=>{
     let name = _req.query["name"];
     let compliment: string = randItem(compliments)
-    if(name != undefined){
-        compliment = compliment.slice(0,compliment.length)
+    if(name != undefined && name != ""){
+        compliment = compliment.slice(0,compliment.length-1)
+        compliment = `${compliment}, ${name}.`
     }
-    _res.render("compliment", { bgcolour: randomColourRGBstr() })
+    _res.render("compliment", { bgcolour: randomColourRGBstr(), compliment })
 });
 
 // binds port to app (3000 is commonly used)
