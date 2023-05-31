@@ -83,6 +83,40 @@ function updatePokemonTypeDropdown(){
   ;
 }
 
+function getPokemonInfo(result) {
+    let url = result["apiurl"];
+    axios.get(url)
+      .then(function(response) {
+        let data = response.data;
+        let types = data['types'];
+        let pokemonName = data['name'];
+        let artWork = data['sprites']['other']['official-artwork']['front_default'];
+        let abilities = data['abilities'];
+        
+        for (let item of types) {
+          let type = item['type']['name'];
+          document.getElementById('type').textContent = `Type: ${type}`;
+        }
+        let abilitiesContainer = document.createElement('div');
+        let abilitiesTitle = document.createElement('p');
+        abilitiesTitle.textContent = 'Abilities:';
+        abilitiesContainer.appendChild(abilitiesTitle);
+
+        let abilitiesList = document.createElement('ul');
+        abilitiesList.style.listStyleType = 'none';
+        
+        for (let ability of abilities) {
+          let abilityName = ability['ability']['name'];
+          let abilityElement = document.createElement('li');
+          abilityElement.textContent = `• ${abilityName}`;
+          abilitiesList.appendChild(abilityElement);
+        }
+        abilitiesContainer.appendChild(abilitiesList);
+        document.getElementById('abilities').appendChild(abilitiesContainer);
+        document.getElementById('pokemonName').textContent = `Name: ${pokemonName}`;
+        document.getElementById('artWork').src = artWork;
+      });
+  }
 function filterPokemonByType(){
   let selected_types = $('#s_types').dropdown('get values')
   var pokelist = []
@@ -148,10 +182,4 @@ function filterPokemonByType(){
   return
 }
 
-function getPokemonInfo(result){
-  let url = result["apiurl"]
-  axios.get(url)
-    .then(function(response){
-      console.log(response.data)
-    })
-}
+
