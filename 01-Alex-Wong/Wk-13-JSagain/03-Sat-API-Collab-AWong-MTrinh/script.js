@@ -57,7 +57,7 @@ function updateFilteredPokemonSearchBox(pokeList){
     .dropdown('destroy')
     .dropdown({
       values: pokeList,
-      placeholder: "Filtered by type...",
+      placeholder: "Pokemon by type...",
       allowReselection: true,
       onChange: function(value,text,e){
         let selected_pokemon = listOfPokemon
@@ -127,24 +127,29 @@ function filterPokemonByType(){
         }))
       break;
     default:
-      console.log("no type selected")
+      // console.log("no type selected")
   }
   if(promise == null){
-    updateFilteredPokemonSearchBox([])
-    return
+    updateFilteredPokemonSearchBox([]);
+    $('#pokeSearch').toggleClass("hide", false);
+    $('#filteredPokeSearch-container').toggleClass("hide", true);
+  }else{
+    $('#pokeSearch').toggleClass("hide", true);
+    $('#filteredPokeSearch-container').toggleClass("hide", false);
+    promise.then(()=>{
+      let fitered_pokelist = []
+      for(let pokemon of pokelist){
+        fitered_pokelist.push({
+          name: pokemon["name"],
+          title: pokemon["name"],
+          value: pokemon["name"],
+          apiurl: pokemon["url"]
+        })
+      }
+      $('#pokeSearch').search('set value', "")
+      updateFilteredPokemonSearchBox(fitered_pokelist)
+    })
   }
-  promise.then(()=>{
-    let fitered_pokelist = []
-    for(let pokemon of pokelist){
-      fitered_pokelist.push({
-        name: pokemon["name"],
-        title: pokemon["name"],
-        value: pokemon["name"],
-        apiurl: pokemon["url"]
-      })
-    }
-    updateFilteredPokemonSearchBox(fitered_pokelist)
-  })
   return
 }
 
@@ -168,7 +173,7 @@ function getPokemonInfo(result) {
       e_type.innerHTML = ""
       e_artWork.innerHTML = ""
       e_pokemonName.innerHTML = ""
-      
+
       e_pokemonName.textContent = `Name: ${pokemonName}`;
       e_artWork.src = artWork;
 
