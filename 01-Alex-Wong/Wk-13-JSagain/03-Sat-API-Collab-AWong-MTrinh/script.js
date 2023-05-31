@@ -2,6 +2,9 @@ var listOfPokemon = [
   // eg. { title: 'something' }
 ];
 
+var listOfTypes = [];
+
+// retrieve list of pokemon
 axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
   .then(function(response){
     let pokelist = response.data.results;
@@ -13,20 +16,52 @@ axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
         apiurl: pokemon["url"]
       })
     }
+    updatePokemonSearchBox()
   })
-  .then(function(){
-    $('.ui.search')
-      .search({
-        source: listOfPokemon,
-        onSelect: function(result,response){
-          // result is the selected result
-          // response is the filtered list of results
-          getPokemonInfo(result)
-          return true
-        }
+
+// retrieve list of types
+axios.get('https://pokeapi.co/api/v2/type/')
+  .then(function(response){
+    let typelist = response.data.results;
+    for(let index in typelist){
+      let type = typelist[index]
+      listOfTypes.push({
+        name: type["name"],
+        value: type["name"],
+        id: (index+1),
+        apiurl: type["url"]
       })
-    ;
+    }
+    updatePokemonTypeDropdown()
   })
+
+function updatePokemonSearchBox(){
+  $('#pokeSearch')
+    .search({
+      source: listOfPokemon,
+      onSelect: function(result,response){
+        // result is the selected result
+        // response is the filtered list of results
+        getPokemonInfo(result)
+        return true
+      }
+    })
+  ;
+  return true
+}
+
+function updatePokemonTypeDropdown(){
+  console.log(listOfTypes)
+  $('#s_types')
+    .dropdown({
+      maxSelections: 2,
+      values: listOfTypes,
+    })
+    .on("change", function(){
+      console.log($('#s_types').dropdown('get values'))
+    })
+  ;
+}
 
 function getPokemonInfo(result){
   let url = result["apiurl"]
