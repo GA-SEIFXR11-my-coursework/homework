@@ -71,9 +71,13 @@ function getPokemonInfo(result){
         let types = data['types']
         let pokemonName = data['name']
         let artwork = data['sprites']['other']['official-artwork']['front_default']
+        let abilities = data['abilities']
         for(let item of types) {
             let type = item['type']['name']
             console.log(type);
+        }   for(let ability of abilities) {
+            let abilityName = ability['ability']['name']
+            console.log(abilityName);
         }   
         console.log(pokemonName)
         console.log(artwork)
