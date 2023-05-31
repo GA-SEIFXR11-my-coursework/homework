@@ -70,18 +70,26 @@ function getPokemonInfo(result){
         let data = response.data
         let types = data['types']
         let pokemonName = data['name']
-        let artwork = data['sprites']['other']['official-artwork']['front_default']
+        let artWork = data['sprites']['other']['official-artwork']['front_default']
         let abilities = data['abilities']
         for(let item of types) {
             let type = item['type']['name']
             console.log(type);
+            document.getElementById('type').textContent = `Type: ${type}`
         }   for(let ability of abilities) {
             let abilityName = ability['ability']['name']
             console.log(abilityName);
+            let abilityElement = document.createElement('p')
+            abilityElement.textContent = `Abilities: ${abilityName}`
+            document.getElementById('abilities').appendChild(abilityElement)
         }   
         console.log(pokemonName)
-        console.log(artwork)
+        console.log(artWork)
         console.log(response.data)
+
+        document.getElementById('pokemonName').textContent = `Name: ${pokemonName}`
+        document.getElementById('artWork').src = artWork
+
     })
 }
 
