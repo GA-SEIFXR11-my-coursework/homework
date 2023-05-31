@@ -32,6 +32,18 @@ function getPokemonInfo(result){
   let url = result["apiurl"]
   axios.get(url)
     .then(function(response){
-      console.log(response.data)
+        let data = response.data
+        let types = data['types']
+        let pokemonName = data['name']
+        let artwork = data['sprites']['other']['official-artwork']['front_default']
+        for(let item of types) {
+            let type = item['type']['name']
+            console.log(type);
+        }   
+        console.log(pokemonName)
+        console.log(artwork)
+        console.log(response.data)
     })
 }
+
+
