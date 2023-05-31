@@ -1,35 +1,22 @@
-var content = [
-    { title: 'Andorra' },
-    { title: 'United Arab Emirates' },
-    { title: 'Afghanistan' },
-    { title: 'Antigua' },
-    { title: 'Anguilla' },
-    { title: 'Albania' },
-    { title: 'Armenia' },
-    { title: 'Netherlands Antilles' },
-    { title: 'Angola' },
-    { title: 'Argentina' },
-    { title: 'American Samoa' },
-    { title: 'Austria' },
-    { title: 'Australia' },
-    { title: 'Aruba' },
-    { title: 'Aland Islands' },
-    { title: 'Azerbaijan' },
-    { title: 'Bosnia' },
-    { title: 'Barbados' },
-    { title: 'Bangladesh' },
-    { title: 'Belgium' },
-    { title: 'Burkina Faso' },
-    { title: 'Bulgaria' },
-    { title: 'Bahrain' },
-    { title: 'Burundi' }
-    // etc
-  ];
+var listOfPokemon = [
+  // eg. { title: 'something' }
+];
 
-
-
-$('.ui.search')
-  .search({
-    source: content
+axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
+  .then(function(response){
+    let pokelist = response.data.results;
+    for(let pokemon of pokelist){
+      listOfPokemon.push({
+        title: pokemon["name"],
+        url: pokemon["url"]
+      })
+    }
   })
-;
+  .then(function(){
+    $('.ui.search')
+      .search({
+        source: listOfPokemon
+      })
+    ;
+  })
+
