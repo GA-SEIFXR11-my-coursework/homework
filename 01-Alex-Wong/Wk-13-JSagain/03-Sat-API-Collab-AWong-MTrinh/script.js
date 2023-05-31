@@ -83,40 +83,6 @@ function updatePokemonTypeDropdown(){
   ;
 }
 
-function getPokemonInfo(result) {
-    let url = result["apiurl"];
-    axios.get(url)
-      .then(function(response) {
-        let data = response.data;
-        let types = data['types'];
-        let pokemonName = data['name'];
-        let artWork = data['sprites']['other']['official-artwork']['front_default'];
-        let abilities = data['abilities'];
-        
-        for (let item of types) {
-          let type = item['type']['name'];
-          document.getElementById('type').textContent = `Type: ${type}`;
-        }
-        let abilitiesContainer = document.createElement('div');
-        let abilitiesTitle = document.createElement('p');
-        abilitiesTitle.textContent = 'Abilities:';
-        abilitiesContainer.appendChild(abilitiesTitle);
-
-        let abilitiesList = document.createElement('ul');
-        abilitiesList.style.listStyleType = 'none';
-        
-        for (let ability of abilities) {
-          let abilityName = ability['ability']['name'];
-          let abilityElement = document.createElement('li');
-          abilityElement.textContent = `• ${abilityName}`;
-          abilitiesList.appendChild(abilityElement);
-        }
-        abilitiesContainer.appendChild(abilitiesList);
-        document.getElementById('abilities').appendChild(abilitiesContainer);
-        document.getElementById('pokemonName').textContent = `Name: ${pokemonName}`;
-        document.getElementById('artWork').src = artWork;
-      });
-  }
 function filterPokemonByType(){
   let selected_types = $('#s_types').dropdown('get values')
   var pokelist = []
@@ -182,4 +148,49 @@ function filterPokemonByType(){
   return
 }
 
+function getPokemonInfo(result) {
+  let e_abilities = document.getElementById('abilities')
+  let e_type = document.getElementById('type')
+  let e_artWork = document.getElementById('artWork')
+  let e_pokemonName = document.getElementById('pokemonName')
+  
+  let url = result["apiurl"];
+  axios.get(url)
+    .then(function(response){
+      let data = response.data;
+      let types = data['types'];
+      let pokemonName = data['name'];
+      let artWork = data['sprites']['other']['official-artwork']['front_default'];
+      let abilities = data['abilities'];
 
+      // wipe/reset content
+      e_abilities.innerHTML = ""
+      e_type.innerHTML = ""
+      e_artWork.innerHTML = ""
+      e_pokemonName.innerHTML = ""
+      
+      e_pokemonName.textContent = `Name: ${pokemonName}`;
+      e_artWork.src = artWork;
+
+      let type_text = "Type: "
+      for (let type of types) {
+        type_text += `${type['type']['name']}, `;
+      }
+      type_text = type_text.slice(0, type_text.length-2) // remove ending comma
+      e_type.textContent = type_text
+
+      let abilitiesTitle = document.createElement('p');
+      abilitiesTitle.textContent = 'Abilities:';
+      e_abilities.appendChild(abilitiesTitle);
+
+      let abilitiesList = document.createElement('ul');
+      abilitiesList.style.listStyleType = 'none';
+      for (let ability of abilities) {
+        let abilityName = ability['ability']['name'];
+        let abilityElement = document.createElement('li');
+        abilityElement.textContent = `• ${abilityName}`;
+        abilitiesList.appendChild(abilityElement);
+      }
+      e_abilities.appendChild(abilitiesList);
+    });
+}
