@@ -2,6 +2,10 @@
     display: none !important;
 }
 
+.invis{
+    visibility: hidden !important;
+}
+
 html, body {
     height: 100%;
     margin: 0;
