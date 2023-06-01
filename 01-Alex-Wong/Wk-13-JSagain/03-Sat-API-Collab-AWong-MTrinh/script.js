@@ -174,7 +174,7 @@ function getPokemonInfo(result) {
       e_artWork.innerHTML = ""
       e_pokemonName.innerHTML = ""
 
-      e_pokemonName.textContent = `Name: ${pokemonName}`;
+      e_pokemonName.textContent = pokemonName;
       e_artWork.src = artWork;
 
       let type_text = "Type: "
