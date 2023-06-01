@@ -154,6 +154,8 @@ function filterPokemonByType(){
 }
 
 function getPokemonInfo(result) {
+  $('#info-container').toggleClass("invis", false)
+
   let e_abilities = document.getElementById('abilities')
   let e_type = document.getElementById('type')
   let e_artWork = document.getElementById('artWork')
