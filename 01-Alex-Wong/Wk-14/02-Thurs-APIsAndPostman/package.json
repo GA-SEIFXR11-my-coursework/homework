@@ -1,0 +1,21 @@
+{
+  "name": "wk14-thurs-homework",
+  "version": "1.0.0",
+  "description": "Pokemon CRUD API tested with Postman client",
+  "main": "app.js",
+  "scripts": {
+    "start": "echo 'asdf'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.2.5"
+  }
+}
