@@ -1,7 +1,4 @@
 import express from "express";
-import mongodb, { MongoClient } from 'mongodb'
-import 'dotenv/config'
-import assert from "assert"
 
 import ScavHuntMongo from "./ScavHuntMongo.ts"
 
@@ -11,19 +8,21 @@ const clientRouter = express.Router();
 const apiRouter = express.Router();
 const mongo = new ScavHuntMongo();
 
-clientRouter.use(express.static("client"));
-app.use("/", clientRouter);
+apiRouter.use(express.json());
+apiRouter.use(express.urlencoded({extended: true}));
 
-(async()=>{
-    await mongo.client.connect();
-    await mongo.regenChallenges();
-    await mongo.listChallenges();
-})()
-
-apiRouter.get("/",function(req,res){
-    res.render("index",{msg: "asdf!"});
+// testing purposes only
+// mongo.sanityTest_doubleWrap(); 
+// mongo.sanityTest_asyncWrappedCall();
+apiRouter.get("/challenges",function(req,res){
+    mongo.getAllChallenges().then((result)=>{
+        res.json(result);
+    })
 });
 
+clientRouter.use(express.static("client"));
+app.use("/", clientRouter);
+app.use("/api", apiRouter);
 app.listen(port, function(){
     console.log("App started...");
 })
