@@ -10,28 +10,36 @@ const defaultChallenges = [
 
 export default class ScavHuntMongo{
     client: MongoClient;
-    collections: {[k: string]: mongodb.Collection<mongodb.BSON.Document>};
-    connection: Promise<mongodb.MongoClient>;
-    lastPromise: Promise<any>;
-    sanityLogging: boolean = false;
+    collections: {[k: string]: mongodb.Collection<mongodb.BSON.Document>} = {};
+    asyncReady: Promise<boolean>;
 
     constructor(){
         this.client = new MongoClient(process.env["MONGO_URI"] as string);
-        this.connection = this.client.connect()
-        this.lastPromise = this.connection;
-        this.collections = {};
+        this.client.connect()
+        this.asyncReady = new Promise(async(resolve,reject)=>{
+            await this.client.connect();
+
+        });
         this.collections = {
             ...this.collections,
             challengesCollection: this.client.db(dbname).collection("challenges"),
         };
     }
-
+    
     errorHandler(e: unknown){
         if(typeof e == "string"){ throw (new Error(e as string)); }
         else if(e instanceof Error){ throw (new Error(e.message)); }
         return <never>{};
     }
 
+    async asyncWrapped<T extends Promise<T>>(promise: T): Promise<T>{
+        return( new Promise(async(resolve,reject)=>{
+            let ready: boolean = await this.asyncReady;
+            if(!ready){ reject() }
+        
+        }))
+    }
+    /*
     async asyncWrapper(promise: Awaited<Promise<any>>){
         return(async()=>{
             if(this.sanityLogging){console.log("1: asynWrap start")};
@@ -59,7 +67,7 @@ export default class ScavHuntMongo{
 
     async asyncWrappedCall(promise: Awaited<Promise<any>>){
         // usage: 
-        //  return this.asyncWrappedCall(async()=>{ /* your function*/ })
+        //  return this.asyncWrappedCall(async()=>{ <your function> })
         //  primitive chaining safety here, but race conditions can still break it
         await this.lastPromise;
         let asyncCall = await this.asyncWrapper(promise);
@@ -117,5 +125,5 @@ export default class ScavHuntMongo{
         })
         .catch((e:any)=>{this.errorHandler(e)})
     )}
-    
+    */
 }

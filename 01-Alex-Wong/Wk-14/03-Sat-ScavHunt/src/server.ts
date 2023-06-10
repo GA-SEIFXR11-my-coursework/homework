@@ -1,6 +1,6 @@
 import express from "express";
 
-import ScavHuntMongo from "./ScavHuntMongo.ts"
+import ScavHuntMongo from "./config/scavHunt.ts"
 
 const port = 3000;
 const app = express();
@@ -15,15 +15,18 @@ apiRouter.use(express.urlencoded({extended: true}));
 // mongo.sanityTest_doubleWrap(); 
 // mongo.sanityTest_asyncWrappedCall();
 apiRouter.get("/challenges",function(req,res){
-    mongo.getAllChallenges().then((result)=>{
-        res.json(result);
-    })
+    // mongo.getAllChallenges().then((result)=>{
+    //     res.json(result);
+    // })
 });
 
-clientRouter.use(express.static("client"));
+clientRouter.use(express.static("./client"));
 app.use("/", clientRouter);
 app.use("/api", apiRouter);
-app.listen(port, function(){
-    console.log("App started...");
-})
-
+try{
+    app.listen(port, function(){
+        console.log("App started...");
+    })
+    .catch(()=>{})
+    .finally()
+}
