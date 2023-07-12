@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px/1.5 sans-serif;
+  margin: 0;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+}
+
+.colourPicker {
+  cursor: pointer;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #444;
+  border-radius: 50%;
+}
+
+.red {
+  background: #e76f51;
+  color: white;
+}
+
+.white {
+  background-color: white;
+  color: #444;
+}
+
+.blue {
+  background-color: #8ecae6;
+  color: white;
+}
+
+.yellow {
+  background-color: #e9c46a;
+  color: #444;
+}
