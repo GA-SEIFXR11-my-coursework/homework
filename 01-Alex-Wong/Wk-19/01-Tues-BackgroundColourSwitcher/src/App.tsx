@@ -13,7 +13,7 @@ type ColourVals = typeof colours[ColourKeys];
 
 export default function App() {
   const [colour, setColour] = useState(colours.white as ColourVals);
-  const colourList = Array.from(Object.keys(colours)) as ColourVals[];
+  const colourList = Array.from(Object.values(colours)) as ColourVals[];
   const colourPickers = colourList.map((val)=>{
     return <ColourPicker colour={val} setColour={setColour}/>
   })
