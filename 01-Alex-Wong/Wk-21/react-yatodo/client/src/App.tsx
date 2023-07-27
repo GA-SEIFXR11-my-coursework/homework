@@ -6,18 +6,21 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TableFooter from "@mui/material/TableFooter";
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 interface T_todo{
-  _id: string;
+  _id?: string;
   title: string;
   details: string;
   completed: boolean;
-  created_at: string;
-  last_updated_at: string;
+  created_at?: string;
+  last_updated_at?: string;
 }
 
 export default function App(){
@@ -58,6 +61,9 @@ function TodoTable(props: TodoTableProps){
         <TableBody>
           {todoList.map((todo, index)=>{ return(<><TodoRow todo={todo} no={index}/></>)})}
         </TableBody>
+        <TableFooter>
+          <CreateNewTodoRow />
+        </TableFooter>
       </Table>
     </TableContainer>
   );
@@ -97,7 +103,6 @@ function TodoRow(props: TodoRowProps){
     return(
       <TableRow
         key={todo._id}
-        sx={{ '&:last-child td, &:last-child th': { border: 0 }} }
       >
         <TableCell component="th" scope="row">{no}</TableCell>
         <TableCell align="left">{todo.title}</TableCell>
@@ -109,16 +114,68 @@ function TodoRow(props: TodoRowProps){
           />
         </TableCell>
         <TableCell align="left">
-          <IconButton aria-label="delete" onClick={handleDelete}>
-            <DeleteIcon />
-          </IconButton>
+          <Button variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
+            Delete
+          </Button>
         </TableCell>
       </TableRow>
     )
   }
 }
 
-// function createNewTodoRow(){}
+function CreateNewTodoRow(){
+  const [title, setTitle] = React.useState('');
+  const [details, setDetails] = React.useState('');
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, setState: React.Dispatch<React.SetStateAction<string>>){
+    setState(event.target.value);
+  }
+
+  function handleSubmit(){
+    const data: T_todo = {
+      title: title,
+      details: details,
+      completed: false
+    }
+    axios({
+      method: 'post',
+      url: '/api/todo',
+      data: data
+    })
+  }
+
+  return(
+    <TableRow
+      sx={{ '&:last-child td, &:last-child th': { border: 0 }} }
+    >
+      <TableCell component="th" scope="row">New todo</TableCell>
+      <TableCell align="left">
+        <TextField
+          fullWidth
+          id="title-input"
+          label="title"
+          value={title}
+          onChange={(e)=>{handleInputChange(e, setTitle)}}
+        />
+      </TableCell>
+      <TableCell align="left">
+        <TextField
+          fullWidth
+          id="details-input"
+          label="details"
+          value={details}
+          onChange={(e)=>{handleInputChange(e, setDetails)}}
+        />
+      </TableCell>
+      <TableCell align="left"></TableCell>
+      <TableCell align="left">
+        <Button variant="contained" endIcon={<SendIcon />} onClick={handleSubmit}>
+          New todo
+        </Button>
+      </TableCell>
+    </TableRow>
+  )
+}
 
 
 // Create todo
