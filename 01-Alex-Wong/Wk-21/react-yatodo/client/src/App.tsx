@@ -7,6 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Switch from '@mui/material/Switch';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface T_todo{
   _id: string;
@@ -46,9 +49,10 @@ function TodoTable(props: TodoTableProps){
         <TableHead>
           <TableRow>
             <TableCell>No.</TableCell>
-            <TableCell align="right">Title</TableCell>
-            <TableCell align="right">Details</TableCell>
-            <TableCell align="right">Completed</TableCell>
+            <TableCell align="left">Title</TableCell>
+            <TableCell align="left">Details</TableCell>
+            <TableCell align="left">Completed</TableCell>
+            <TableCell align="left">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -65,17 +69,53 @@ interface TodoRowProps{
 }
 function TodoRow(props: TodoRowProps){
   const {todo, no} = props;
-  return(
-    <TableRow
-      key={todo._id}
-      sx={{ '&:last-child td, &:last-child th': { border: 0 }} }
-    >
-      <TableCell component="th" scope="row">{no}</TableCell>
-      <TableCell align="right">{todo.title}</TableCell>
-      <TableCell align="right">{todo.details}</TableCell>
-      <TableCell align="right">{todo.completed}</TableCell>
-    </TableRow>
-  )
+  const [completed, setCompleted] = React.useState(todo.completed);
+  const [deleted, setDeleted] = React.useState(false);
+
+  function handleChange(){
+    const data = {...todo};
+    data.completed = !completed;
+    axios({
+      method: 'put',
+      url: `/api/todo/${todo._id}`,
+      data: data,
+    })
+    setCompleted(!completed);
+  }
+
+  function handleDelete(){
+    axios({
+      method: 'delete',
+      url: `/api/todo/${todo._id}`
+    })
+    setDeleted(true);
+  }
+
+  if(deleted){
+    return <></>
+  }else{
+    return(
+      <TableRow
+        key={todo._id}
+        sx={{ '&:last-child td, &:last-child th': { border: 0 }} }
+      >
+        <TableCell component="th" scope="row">{no}</TableCell>
+        <TableCell align="left">{todo.title}</TableCell>
+        <TableCell align="left">{todo.details}</TableCell>
+        <TableCell align="left">
+          <Switch
+            checked={completed}
+            onChange={handleChange}
+          />
+        </TableCell>
+        <TableCell align="left">
+          <IconButton aria-label="delete" onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    )
+  }
 }
 
 // function createNewTodoRow(){}
